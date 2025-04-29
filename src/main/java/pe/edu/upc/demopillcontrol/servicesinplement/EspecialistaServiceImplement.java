@@ -1,6 +1,5 @@
 package pe.edu.upc.demopillcontrol.servicesinplement;
 
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demopillcontrol.entities.Especialista;
@@ -26,11 +25,6 @@ public class EspecialistaServiceImplement implements IEspecialistaService {
     }
 
     @Override
-    public Especialista listId(int idEspecialista) {
-        return eR.findById(idEspecialista).orElse(new Especialista());
-    }
-
-    @Override
     public void update(Especialista e) {
         eR.save(e);
     }
@@ -38,5 +32,10 @@ public class EspecialistaServiceImplement implements IEspecialistaService {
     @Override
     public void delete(int idEspecialista) {
         eR.deleteById(idEspecialista);
+    }
+
+    @Override
+    public List<Especialista> buscarEspecialidad(String especialidadEspecialista) {
+        return eR.buscarEspecialidad(especialidadEspecialista);
     }
 }

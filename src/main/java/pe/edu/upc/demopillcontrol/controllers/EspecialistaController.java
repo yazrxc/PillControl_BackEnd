@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.EspecialistaDTO;
+import pe.edu.upc.demopillcontrol.dtos.UsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Especialista;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IEspecialistaService;
 
@@ -30,22 +31,23 @@ public class EspecialistaController {
         Especialista e = modelMapper.map(eDto,Especialista.class);
         eS.insert(e);
     }
-    @GetMapping("/{idEspecialista}")
-    public EspecialistaDTO listarId(@PathVariable ("idEspecialista") int idEspecialista){
-        ModelMapper m = new ModelMapper();
-        EspecialistaDTO dto=m.map(eS.listId(idEspecialista),EspecialistaDTO.class);
-        return dto;
-    }
     @PutMapping
     public void modificar(@RequestBody EspecialistaDTO eDto){
         ModelMapper m = new ModelMapper();
         Especialista e = m.map(eDto,Especialista.class);
         eS.update(e);
     }
-
     @DeleteMapping("/{idEspecialista}")
     public void eliminar(@PathVariable ("idEspecialista") int idEspecialista){
         eS.delete(idEspecialista);
+    }
+
+    @GetMapping("/busquedasespecialidad")
+    public List<UsuarioDTO> buscarEspecialidad(@RequestParam String especialidad){
+        return eS.buscarEspecialidad(especialidad).stream().map(x ->{
+            ModelMapper m = new ModelMapper();
+            return m.map(x,UsuarioDTO.class);
+        }).collect(Collectors.toList());
     }
 
 }

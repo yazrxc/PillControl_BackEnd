@@ -7,7 +7,7 @@ import java.util.List;
 public interface IEspecialistaService {
     public List<Especialista> list();
     public void insert(Especialista e);
-    Especialista listId(int idEspecialista);
     void update(Especialista e);
     void delete(int idEspecialista);
+    public List<Especialista> buscarEspecialidad(String especialidadEspecialista);
 }
