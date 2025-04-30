@@ -36,4 +36,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public List<Usuario> buscarPorCorreo(String correoUsuario) {
         return uR.buscarPorCorreo(correoUsuario);
     }
+
+    @Override
+    public List<Usuario> listarRoles(int idUsuario) {
+        return uR.listarRoles(idUsuario);
+    }
 }

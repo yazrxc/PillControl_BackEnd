@@ -36,9 +36,25 @@ public class TratamientoController {
         tS.delete(idTratamiento);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<TratamientoDTO> listar() {
         return tS.list().stream().map( x ->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,TratamientoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/tratamientoporestado")
+    public List<TratamientoDTO> listarPorEstado(@RequestParam String estado) {
+        return tS.listarPorEstado(estado).stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,TratamientoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/tratamientosusuario")
+    public List<TratamientoDTO> listarPorUsuario(@RequestParam int idUsuario) {
+        return  tS.listarPorUsuario(idUsuario).stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,TratamientoDTO.class);
         }).collect(Collectors.toList());
