@@ -1,20 +1,25 @@
 package pe.edu.upc.demopillcontrol.dtos;
 
+import jakarta.persistence.*;
 import pe.edu.upc.demopillcontrol.entities.Especialista;
 import pe.edu.upc.demopillcontrol.entities.RolUsuario;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class UsuarioDTO {
     private int idUsuario;
-    private String nombreUsuario;
-    private int EdadUsuario;
+    private String username;
+    private String password;
+    private Boolean enabled;
+    private String nombre;
+    private int edadUsuario;
     private String correoUsuario;
     private String generoUsuario;
     private String telefonoUsuario;
     private String direccionUsuario;
     private LocalDate fechaRegistroUsuario;
-    private RolUsuario rolusuario;
+    private List<RolUsuario> roles;
     private Especialista especialista;
 
     public int getIdUsuario() {
@@ -25,20 +30,44 @@ public class UsuarioDTO {
         this.idUsuario = idUsuario;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getEdadUsuario() {
-        return EdadUsuario;
+        return edadUsuario;
     }
 
     public void setEdadUsuario(int edadUsuario) {
-        EdadUsuario = edadUsuario;
+        this.edadUsuario = edadUsuario;
     }
 
     public String getCorreoUsuario() {
@@ -81,12 +110,12 @@ public class UsuarioDTO {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
     }
 
-    public RolUsuario getRolusuario() {
-        return rolusuario;
+    public List<RolUsuario> getRoles() {
+        return roles;
     }
 
-    public void setRolusuario(RolUsuario rolusuario) {
-        this.rolusuario = rolusuario;
+    public void setRoles(List<RolUsuario> roles) {
+        this.roles = roles;
     }
 
     public Especialista getEspecialista() {
