@@ -2,9 +2,11 @@ package pe.edu.upc.demopillcontrol.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "RolUsuario")
-public class RolUsuario {
+@Table(name = "RolUsuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"idUsuario", "tiporol"})})
+public class RolUsuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idrol;
@@ -15,14 +17,9 @@ public class RolUsuario {
     @Column(name = "descripcion",nullable = false,length = 250)
     private String descripcion;
 
-    public RolUsuario() {
-    }
-
-    public RolUsuario(int idrol, String tiporol, String descripcion) {
-        this.idrol = idrol;
-        this.tiporol = tiporol;
-        this.descripcion = descripcion;
-    }
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Usuario user;
 
     public int getIdrol() {
         return idrol;
@@ -46,5 +43,13 @@ public class RolUsuario {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 }

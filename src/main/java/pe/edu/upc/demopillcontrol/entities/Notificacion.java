@@ -8,9 +8,9 @@ public class Notificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNotificacion;
-    @Column(name = "estadoNotificacion",nullable = false)
+    @Column(name = "estadoNotificacion", nullable = false)
     private Boolean estadoNotificacion;
-    @Column(name = "mensajeNotificaion",nullable = false,length = 250)
+    @Column(name = "mensajeNotificaion", nullable = false, length = 250)
     private String mensajeNotificaion;
 
     @ManyToOne

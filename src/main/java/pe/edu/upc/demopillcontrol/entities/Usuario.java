@@ -2,17 +2,27 @@ package pe.edu.upc.demopillcontrol.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="usuario")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
-    @Column(name = "nombreUsuario", nullable = false, length = 100)
-    private String nombreUsuario;
+    @Column(length = 30, unique = true)
+    private String username;
+
+    @Column(length = 200)
+    private String password;
+
+    private Boolean enabled;
+
+    @Column(name = "nombre", nullable = false, length = 50)
+    private String nombre;
 
     @Column(name = "edadUsuario", nullable = false)
     private int edadUsuario;
@@ -32,29 +42,13 @@ public class Usuario {
     @Column(name = "fechaRegistroUsuario", nullable = false, length = 100)
     private LocalDate fechaRegistroUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "idrol")
-    private RolUsuario rolusuario;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idUsuario")
+    private List<RolUsuario> roles;
 
     @ManyToOne
     @JoinColumn(name = "idEspecialista")
     private Especialista especialista;
-
-    public Usuario() {
-    }
-
-    public Usuario(int idUsuario, String nombreUsuario, int edadUsuario, String correoUsuario, String generoUsuario, String telefonoUsuario, String direccionUsuario, LocalDate fechaRegistroUsuario, RolUsuario rolusuario, Especialista especialista) {
-        this.idUsuario = idUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.edadUsuario = edadUsuario;
-        this.correoUsuario = correoUsuario;
-        this.generoUsuario = generoUsuario;
-        this.telefonoUsuario = telefonoUsuario;
-        this.direccionUsuario = direccionUsuario;
-        this.fechaRegistroUsuario = fechaRegistroUsuario;
-        this.rolusuario = rolusuario;
-        this.especialista = especialista;
-    }
 
     public int getIdUsuario() {
         return idUsuario;
@@ -64,12 +58,36 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getEdadUsuario() {
@@ -120,12 +138,12 @@ public class Usuario {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
     }
 
-    public RolUsuario getRolusuario() {
-        return rolusuario;
+    public List<RolUsuario> getRoles() {
+        return roles;
     }
 
-    public void setRolusuario(RolUsuario rolusuario) {
-        this.rolusuario = rolusuario;
+    public void setRoles(List<RolUsuario> roles) {
+        this.roles = roles;
     }
 
     public Especialista getEspecialista() {

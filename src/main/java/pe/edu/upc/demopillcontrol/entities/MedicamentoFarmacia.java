@@ -9,13 +9,13 @@ public class MedicamentoFarmacia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idmedicamentoFarmacia;
 
-    @Column(name = "cantidadMedicamentoFarmacia",nullable = false)
+    @Column(name = "cantidadMedicamentoFarmacia", nullable = false)
     private int cantidadMedicamentoFarmacia;
-    @Column(name ="tipoVentaMedicamentoFarmacia" ,nullable = false,length = 20)
+    @Column(name = "tipoVentaMedicamentoFarmacia", nullable = false, length = 20)
     private String tipoVentaMedicamentoFarmacia;
-    @Column(name = "precioMedicamentoFarmacia",nullable = false)
+    @Column(name = "precioMedicamentoFarmacia", nullable = false)
     private Double precioMedicamentoFarmacia;
-    @Column(name ="laboratorioMedicamentoFarmacia" ,nullable = false,length = 250)
+    @Column(name = "laboratorioMedicamentoFarmacia", nullable = false, length = 250)
     private String laboratorioMedicamentoFarmacia;
 
     @ManyToOne
