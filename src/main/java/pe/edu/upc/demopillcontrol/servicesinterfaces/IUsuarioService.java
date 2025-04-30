@@ -10,5 +10,5 @@ public interface IUsuarioService {
     public void modificar(Usuario u);
     public void eliminar(int idUsuario);
     public List<Usuario> buscarPorCorreo(String correoUsuario);
-    //public List<Usuario> listarPorRoles(String rol);
+    public List<Usuario> listarRoles(int idUsuario);
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import pe.edu.upc.demopillcontrol.entities.RolUsuario;
 import pe.edu.upc.demopillcontrol.entities.Usuario;
 
 import java.util.List;
@@ -27,4 +28,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Modifying
     @Query(value = "insert into RolUsuario (tiporol, idUsuario) VALUES (:tiporol, :idUsuario)", nativeQuery = true)
     public void insRol(@Param("tiporol") String authority, @Param("idUsuario") int idUsuario);
+
+    @Query(value="SELECT r FROM RolUsuario r WHERE r.usuario.idusuario = :idUsuario", nativeQuery = true)
+    public List<Usuario> listarRoles(@Param("idUsuario") int idUsuario);
 }

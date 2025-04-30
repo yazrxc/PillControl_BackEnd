@@ -49,4 +49,11 @@ public class UsuarioController {
             return m.map(x,UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/busquedasroles")
+    public List<UsuarioDTO> listarRoles(@RequestParam int idUsuario){
+        return uS.listarRoles(idUsuario).stream().map(x ->{
+            ModelMapper m = new ModelMapper();
+            return m.map(x,UsuarioDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
