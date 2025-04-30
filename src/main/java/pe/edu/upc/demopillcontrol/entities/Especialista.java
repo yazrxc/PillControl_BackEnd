@@ -15,8 +15,8 @@ public class Especialista {
     @Column(name="especialidadEspecialista", nullable = false, length = 50)
     private String especialidadEspecialista;
 
-    @Column(name="telefonoEspecialista", nullable = false)
-    private int telefonoEspecialista;
+    @Column(name="telefonoEspecialista", nullable = false,length = 9 )
+    private String telefonoEspecialista;
 
     @Column(name="correoEspecialista", nullable = false, length = 50)
     private String correoEspecialista;
@@ -27,7 +27,7 @@ public class Especialista {
     public Especialista() {
     }
 
-    public Especialista(int idEspecialista, String nombreEspecialista, String especialidadEspecialista, int telefonoEspecialista, String correoEspecialista, String institucionEspecialista) {
+    public Especialista(int idEspecialista, String nombreEspecialista, String especialidadEspecialista, String telefonoEspecialista, String correoEspecialista, String institucionEspecialista) {
         this.idEspecialista = idEspecialista;
         this.nombreEspecialista = nombreEspecialista;
         this.especialidadEspecialista = especialidadEspecialista;
@@ -60,11 +60,11 @@ public class Especialista {
         this.especialidadEspecialista = especialidadEspecialista;
     }
 
-    public int getTelefonoEspecialista() {
+    public String getTelefonoEspecialista() {
         return telefonoEspecialista;
     }
 
-    public void setTelefonoEspecialista(int telefonoEspecialista) {
+    public void setTelefonoEspecialista(String telefonoEspecialista) {
         this.telefonoEspecialista = telefonoEspecialista;
     }
 

@@ -23,8 +23,8 @@ public class RolUsuarioServiceImplement implements IRolUsuarioService {
     }
 
     @Override
-    public RolUsuario listId(int idApp) {
-        return rR.findById(idApp).orElse(new RolUsuario());
+    public RolUsuario listId(int idrol) {
+        return rR.findById(idrol).orElse(new RolUsuario());
     }
 
     @Override

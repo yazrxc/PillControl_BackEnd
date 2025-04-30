@@ -1,5 +1,6 @@
 package pe.edu.upc.demopillcontrol.dtos;
 
+import pe.edu.upc.demopillcontrol.entities.Especialista;
 import pe.edu.upc.demopillcontrol.entities.RolUsuario;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class UsuarioDTO {
     private String direccionUsuario;
     private LocalDate fechaRegistroUsuario;
     private RolUsuario rolusuario;
+    private Especialista especialista;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -85,5 +87,13 @@ public class UsuarioDTO {
 
     public void setRolusuario(RolUsuario rolusuario) {
         this.rolusuario = rolusuario;
+    }
+
+    public Especialista getEspecialista() {
+        return especialista;
+    }
+
+    public void setEspecialista(Especialista especialista) {
+        this.especialista = especialista;
     }
 }

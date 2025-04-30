@@ -6,7 +6,7 @@ public class EspecialistaDTO {
     private int idEspecialista;
     private String nombreEspecialista;
     private String especialidadEspecialista;
-    private int telefonoEspecialista;
+    private String telefonoEspecialista;
     private String correoEspecialista;
     private String institucionEspecialista;
 
@@ -34,11 +34,11 @@ public class EspecialistaDTO {
         this.especialidadEspecialista = especialidadEspecialista;
     }
 
-    public int getTelefonoEspecialista() {
+    public String getTelefonoEspecialista() {
         return telefonoEspecialista;
     }
 
-    public void setTelefonoEspecialista(int telefonoEspecialista) {
+    public void setTelefonoEspecialista(String telefonoEspecialista) {
         this.telefonoEspecialista = telefonoEspecialista;
     }
 

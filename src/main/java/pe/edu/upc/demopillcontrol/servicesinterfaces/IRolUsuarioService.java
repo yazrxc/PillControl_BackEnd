@@ -10,7 +10,7 @@ public interface IRolUsuarioService {
 
     void insert(RolUsuario r);
 
-    RolUsuario listId(int idApp);
+    RolUsuario listId(int idrol);
 
     void update(RolUsuario r);
 

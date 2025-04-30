@@ -14,8 +14,8 @@ public class Usuario {
     @Column(name = "nombreUsuario", nullable = false, length = 100)
     private String nombreUsuario;
 
-    @Column(name = "EdadUsuario", nullable = false)
-    private int EdadUsuario;
+    @Column(name = "edadUsuario", nullable = false)
+    private int edadUsuario;
 
     @Column(name = "correoUsuario", nullable = false, length = 100)
     private String correoUsuario;
@@ -36,19 +36,24 @@ public class Usuario {
     @JoinColumn(name = "idrol")
     private RolUsuario rolusuario;
 
+    @ManyToOne
+    @JoinColumn(name = "idEspecialista")
+    private Especialista especialista;
+
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, int edadUsuario, String correoUsuario, String generoUsuario, String telefonoUsuario, String direccionUsuario, LocalDate fechaRegistroUsuario, RolUsuario rolusuario) {
+    public Usuario(int idUsuario, String nombreUsuario, int edadUsuario, String correoUsuario, String generoUsuario, String telefonoUsuario, String direccionUsuario, LocalDate fechaRegistroUsuario, RolUsuario rolusuario, Especialista especialista) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
-        EdadUsuario = edadUsuario;
+        this.edadUsuario = edadUsuario;
         this.correoUsuario = correoUsuario;
         this.generoUsuario = generoUsuario;
         this.telefonoUsuario = telefonoUsuario;
         this.direccionUsuario = direccionUsuario;
         this.fechaRegistroUsuario = fechaRegistroUsuario;
         this.rolusuario = rolusuario;
+        this.especialista = especialista;
     }
 
     public int getIdUsuario() {
@@ -68,11 +73,11 @@ public class Usuario {
     }
 
     public int getEdadUsuario() {
-        return EdadUsuario;
+        return edadUsuario;
     }
 
     public void setEdadUsuario(int edadUsuario) {
-        EdadUsuario = edadUsuario;
+        this.edadUsuario = edadUsuario;
     }
 
     public String getCorreoUsuario() {
@@ -121,5 +126,13 @@ public class Usuario {
 
     public void setRolusuario(RolUsuario rolusuario) {
         this.rolusuario = rolusuario;
+    }
+
+    public Especialista getEspecialista() {
+        return especialista;
+    }
+
+    public void setEspecialista(Especialista especialista) {
+        this.especialista = especialista;
     }
 }
