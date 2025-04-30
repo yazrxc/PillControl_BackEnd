@@ -1,0 +1,33 @@
+package pe.edu.upc.demopillcontrol.servicesinplement;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pe.edu.upc.demopillcontrol.entities.Farmacia;
+import pe.edu.upc.demopillcontrol.repositories.IFarmaciaRepository;
+import pe.edu.upc.demopillcontrol.servicesinterfaces.IFarmaciaService;
+
+import java.util.List;
+
+@Service
+public class FarmaciaServiceImplement implements IFarmaciaService {
+
+    @Autowired
+    private IFarmaciaRepository fR;
+
+    @Override
+    public void insert(Farmacia f) {
+        fR.save(f);
+    }
+    @Override
+    public void update(Farmacia f) {
+        fR.save(f);
+    }
+    @Override
+    public void delete(int idFarmacia) {
+        fR.deleteById(idFarmacia);
+    }
+    @Override
+    public List<Farmacia> list() {
+        return fR.findAll();
+    }
+}
