@@ -32,10 +32,14 @@ public class Usuario {
     @Column(name = "fechaRegistroUsuario", nullable = false, length = 100)
     private LocalDate fechaRegistroUsuario;
 
+    @ManyToOne
+    @JoinColumn(name = "idrol")
+    private RolUsuario rolusuario;
+
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, int edadUsuario, String correoUsuario, String generoUsuario, String telefonoUsuario, String direccionUsuario, LocalDate fechaRegistroUsuario) {
+    public Usuario(int idUsuario, String nombreUsuario, int edadUsuario, String correoUsuario, String generoUsuario, String telefonoUsuario, String direccionUsuario, LocalDate fechaRegistroUsuario, RolUsuario rolusuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         EdadUsuario = edadUsuario;
@@ -44,6 +48,7 @@ public class Usuario {
         this.telefonoUsuario = telefonoUsuario;
         this.direccionUsuario = direccionUsuario;
         this.fechaRegistroUsuario = fechaRegistroUsuario;
+        this.rolusuario = rolusuario;
     }
 
     public int getIdUsuario() {
@@ -108,5 +113,13 @@ public class Usuario {
 
     public void setFechaRegistroUsuario(LocalDate fechaRegistroUsuario) {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
+    }
+
+    public RolUsuario getRolusuario() {
+        return rolusuario;
+    }
+
+    public void setRolusuario(RolUsuario rolusuario) {
+        this.rolusuario = rolusuario;
     }
 }

@@ -1,23 +1,19 @@
 package pe.edu.upc.demopillcontrol.dtos;
 
+import pe.edu.upc.demopillcontrol.entities.RolUsuario;
+
 import java.time.LocalDate;
 
 public class UsuarioDTO {
     private int idUsuario;
-
     private String nombreUsuario;
-
     private int EdadUsuario;
-
     private String correoUsuario;
-
     private String generoUsuario;
-
     private String telefonoUsuario;
-
     private String direccionUsuario;
-
     private LocalDate fechaRegistroUsuario;
+    private RolUsuario rolusuario;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -81,5 +77,13 @@ public class UsuarioDTO {
 
     public void setFechaRegistroUsuario(LocalDate fechaRegistroUsuario) {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
+    }
+
+    public RolUsuario getRolusuario() {
+        return rolusuario;
+    }
+
+    public void setRolusuario(RolUsuario rolusuario) {
+        this.rolusuario = rolusuario;
     }
 }
