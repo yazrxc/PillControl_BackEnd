@@ -2,6 +2,7 @@ package pe.edu.upc.demopillcontrol.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.FarmaciaDTO;
 import pe.edu.upc.demopillcontrol.entities.Farmacia;
@@ -18,6 +19,7 @@ public class FarmaciaController {
     private IFarmaciaService fS;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody FarmaciaDTO fDTO) {
         ModelMapper m=new ModelMapper();
         Farmacia f=m.map(fDTO,Farmacia.class);
@@ -25,6 +27,7 @@ public class FarmaciaController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void actualizar(@RequestBody FarmaciaDTO fDTO) {
         ModelMapper m=new ModelMapper();
         Farmacia f=m.map(fDTO,Farmacia.class);
@@ -32,11 +35,13 @@ public class FarmaciaController {
     }
 
     @DeleteMapping("/{idFarmacia}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("idFarmacia") int idFarmacia) {
         fS.delete(idFarmacia);
     }
 
     @GetMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<FarmaciaDTO> listar() {
         return fS.list().stream().map( x ->{
             ModelMapper m=new ModelMapper();
