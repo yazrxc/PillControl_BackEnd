@@ -19,8 +19,8 @@ public class UsuarioDTO {
     private String telefonoUsuario;
     private String direccionUsuario;
     private LocalDate fechaRegistroUsuario;
-    private List<RolUsuario> roles;
     private Especialista especialista;
+    private List<RolUsuario> roles;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -110,19 +110,19 @@ public class UsuarioDTO {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
     }
 
-    public List<RolUsuario> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RolUsuario> roles) {
-        this.roles = roles;
-    }
-
     public Especialista getEspecialista() {
         return especialista;
     }
 
     public void setEspecialista(Especialista especialista) {
         this.especialista = especialista;
+    }
+
+    public List<RolUsuario> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RolUsuario> roles) {
+        this.roles = roles;
     }
 }

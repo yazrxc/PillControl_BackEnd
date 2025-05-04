@@ -1,5 +1,6 @@
 package pe.edu.upc.demopillcontrol.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class RolUsuario implements Serializable {
     @Column(name = "descripcion",nullable = false,length = 250)
     private String descripcion;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario user;
