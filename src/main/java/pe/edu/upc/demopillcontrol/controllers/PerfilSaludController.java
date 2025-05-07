@@ -4,10 +4,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.PerfilSaludDTO;
+import pe.edu.upc.demopillcontrol.dtos.PerfilTimeDTO;
 import pe.edu.upc.demopillcontrol.entities.ContactoEmergencia;
 import pe.edu.upc.demopillcontrol.entities.PerfilSalud;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IPerfilSaludService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,4 +44,28 @@ public class PerfilSaludController {
     public void eliminar(@PathVariable("idPerfilSalud") int idPerfilSalud) {
         pS.delete(idPerfilSalud);
     }
+    @GetMapping("/timesperfiles")
+    public List<PerfilTimeDTO> listperfilPorMesYAnio(@RequestParam int mes, @RequestParam int anio) {
+        List<PerfilTimeDTO> dtoLista = new ArrayList<>();
+        // Llamada al repositorio para obtener los resultados de la consulta SQL
+        List<String[]> filaLista = pS.listperfilPorMesYAnio(mes, anio);
+        // Recorremos cada fila de resultados y la mapeamos a PerfilTimeDTO
+        for (String[] columna : filaLista) {
+            PerfilTimeDTO dto = new PerfilTimeDTO();
+            // Asignamos los valores de la fila a las propiedades del DTO
+            dto.setNombre(columna[0]); // columna[0] -> nombre
+            dto.setPeso(Double.parseDouble(columna[1])); // columna[1] -> peso
+            dto.setAltura(Double.parseDouble(columna[2])); // columna[2] -> altura
+            dto.setGrupoSanguineo(columna[3]); // columna[3] -> grupo sanguíneo
+            dto.setTelefonoUsuario(columna[4]); // columna[4] -> teléfono (ajustado al orden correcto)
+            dto.setImc(Double.parseDouble(columna[5])); // columna[5] -> imc
+            dto.setCategoriaImc(columna[6]); // columna[6] -> categoría IMC
+            dto.setFechaRegistro(java.sql.Date.valueOf(columna[7]).toLocalDate());
+            // Agregamos el DTO a la lista
+            dtoLista.add(dto);
+        }
+        // Devolvemos la lista de DTOs
+        return dtoLista;
+    }
 }
+
