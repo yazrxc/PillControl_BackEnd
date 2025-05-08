@@ -18,4 +18,6 @@ public interface IContactoEmergenciaService {
     void delete(int idContactoEmergencia);
 
     List<ContactoEmergencia> buscarPorNombrecontacto(@Param("nombre") String nombre);
+
+    List<String[]> listarUsuariosConDiagnosticoGraveSinContacto();
 }

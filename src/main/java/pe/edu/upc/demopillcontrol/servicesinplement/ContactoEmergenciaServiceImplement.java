@@ -45,4 +45,9 @@ public class ContactoEmergenciaServiceImplement implements IContactoEmergenciaSe
     public List<ContactoEmergencia> buscarPorNombrecontacto(String nombre) {
         return cR.buscarPorNombrecontacto(nombre);
     }
+
+    @Override
+    public List<String[]> listarUsuariosConDiagnosticoGraveSinContacto(){
+        return cR.listarUsuariosConDiagnosticoGraveSinContacto();
+    }
 }
