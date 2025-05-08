@@ -12,6 +12,7 @@ public class FarmaciaDTO {
     private String longitudFarmacia;
     private String latitudFarmacia;
 
+
     public int getIdFarmacia() {
         return idFarmacia;
     }
