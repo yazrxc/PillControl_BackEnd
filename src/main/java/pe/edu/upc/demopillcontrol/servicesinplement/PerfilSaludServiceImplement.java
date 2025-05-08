@@ -1,7 +1,6 @@
 package pe.edu.upc.demopillcontrol.servicesinplement;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demopillcontrol.entities.PerfilSalud;
 import pe.edu.upc.demopillcontrol.repositories.IPerfilSaludRepository;
@@ -33,6 +32,17 @@ public class PerfilSaludServiceImplement implements IPerfilSaludService {
     public void delete(int idPerfilSalud) {
         pR.deleteById(idPerfilSalud);
     }
+
+    @Override
+    public List<PerfilSalud> buscargruposanguineo(int id_usuario) {
+        return pR.buscargruposanguineo(id_usuario);
+    }
+    @Override
+    public List<PerfilSalud> buscarcondiciones(int id_usuario){
+        return pR.buscarcondiciones(id_usuario);
+    }
+
+
     @Override
     public List<String[]> listperfilPorMesYAnio( int mes, int anio){
         return pR.listperfilPorMesYAnio(mes,anio);

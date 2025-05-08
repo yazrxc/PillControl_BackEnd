@@ -19,5 +19,7 @@ public interface IContactoEmergenciaService {
 
     List<ContactoEmergencia> buscarPorNombrecontacto(@Param("nombre") String nombre);
 
+    List<ContactoEmergencia> buscarPorCorreo(@Param("correo") String correo);
+
     List<String[]> listarUsuariosConDiagnosticoGraveSinContacto();
 }

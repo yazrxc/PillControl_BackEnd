@@ -13,6 +13,8 @@ public interface IContactoEmergenciaRepository extends JpaRepository<ContactoEme
 
     @Query("SELECT c FROM ContactoEmergencia c WHERE c.nombre LIKE %:nombre%")
     List<ContactoEmergencia> buscarPorNombrecontacto(@Param("nombre") String nombre);
+    @Query("SELECT c FROM ContactoEmergencia c WHERE c.correo LIKE %:correo%")
+    List<ContactoEmergencia> buscarPorCorreo(@Param("correo") String correo);
 
     @Query(value = "SELECT u.id_Usuario, u.nombre, u.edad_Usuario, d.nombre AS diagnostico, d.gravedad,\n" +
             "       ps.alergias, ps.condiciones, ce.nombre AS contacto, ce.telefono\n" +

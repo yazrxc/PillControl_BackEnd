@@ -5,11 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.PerfilSaludDTO;
 import pe.edu.upc.demopillcontrol.dtos.PerfilTimeDTO;
-import pe.edu.upc.demopillcontrol.entities.ContactoEmergencia;
+import pe.edu.upc.demopillcontrol.dtos.TratamientoDTO;
 import pe.edu.upc.demopillcontrol.entities.PerfilSalud;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IPerfilSaludService;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +43,23 @@ public class PerfilSaludController {
     public void eliminar(@PathVariable("idPerfilSalud") int idPerfilSalud) {
         pS.delete(idPerfilSalud);
     }
+
+    @GetMapping("/{idPerfilSaludgruposanguineo}")
+    public List<PerfilSaludDTO> buscargruposanguineo(@RequestParam int id_usuario) {
+        return pS.buscargruposanguineo(id_usuario).stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,PerfilSaludDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/{idPerfilSaludcondiciones}")
+    public List<PerfilSaludDTO> buscarcondiciones(@RequestParam int id_usuario) {
+        return pS.buscarcondiciones(id_usuario).stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,PerfilSaludDTO.class);
+        }).collect(Collectors.toList());
+    }
+
     @GetMapping("/timesperfiles")
     public List<PerfilTimeDTO> listperfilPorMesYAnio(@RequestParam int mes, @RequestParam int anio) {
         List<PerfilTimeDTO> dtoLista = new ArrayList<>();
