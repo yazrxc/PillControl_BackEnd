@@ -2,6 +2,9 @@ package pe.edu.upc.demopillcontrol.servicesinplement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.demopillcontrol.dtos.QueryFarmaciaMedicamentoDTO;
+import pe.edu.upc.demopillcontrol.dtos.QueryFarmaciaStockEconomicoDTO;
+import pe.edu.upc.demopillcontrol.dtos.QueryMedicamentoPorTipoVentaDTO;
 import pe.edu.upc.demopillcontrol.entities.MedicamentoFarmacia;
 import pe.edu.upc.demopillcontrol.repositories.IMedicamentoFarmaciaRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IMedicamentoFarmaciaService;
@@ -29,5 +32,20 @@ public class MedicamentoFarmaciaServiceImplement implements IMedicamentoFarmacia
     @Override
     public List<MedicamentoFarmacia> list() {
         return mfR.findAll();
+    }
+
+    @Override
+    public List<QueryMedicamentoPorTipoVentaDTO> obtenerCantidadPorTipoVenta() {
+        return mfR.obtenerCantidadPorTipoVenta();
+    }
+
+    @Override
+    public List<QueryFarmaciaMedicamentoDTO> obtenerMedicamentoFarmacia() {
+        return mfR.obtenerMedicamentosPorFarmacia();
+    }
+
+    @Override
+    public List<QueryFarmaciaStockEconomicoDTO> obtenerFarmaciasConStockEconomico(Long minCantidad, Double maxPrecio) {
+        return mfR.obtenerFarmaciasConStockEconomico(minCantidad, maxPrecio);
     }
 }

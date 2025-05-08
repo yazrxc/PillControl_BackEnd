@@ -29,6 +29,15 @@ public class ContactoEmergencia {
     public ContactoEmergencia() {
     }
 
+    public ContactoEmergencia(int idContactoEmergencia, String nombre, String parentesco, String telefono, String correo, Usuario usuario) {
+        this.idContactoEmergencia = idContactoEmergencia;
+        this.nombre = nombre;
+        this.parentesco = parentesco;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.usuario = usuario;
+    }
+
     public int getIdContactoEmergencia() {
         return idContactoEmergencia;
     }
