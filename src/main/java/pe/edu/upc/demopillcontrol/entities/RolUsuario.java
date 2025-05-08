@@ -18,10 +18,10 @@ public class RolUsuario implements Serializable {
     @Column(name = "descripcion",nullable = false,length = 250)
     private String descripcion;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario user;
+
 
     public int getIdrol() {
         return idrol;
