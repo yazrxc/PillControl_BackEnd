@@ -40,7 +40,7 @@ public class FarmaciaServiceImplement implements IFarmaciaService {
     //Buscar Farmcia por nombre
     @Override
     public Farmacia obtenerFarmaciaPorNombre(String nombre) {
-        return fR.findByNombre(nombre);
+        return fR.findByNombreFarmacia(nombre);
     }
 
     //Verificar horario de Farmacia

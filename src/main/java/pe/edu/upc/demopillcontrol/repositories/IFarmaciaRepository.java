@@ -13,21 +13,20 @@ import java.time.LocalTime;
 import java.util.List;
 @Repository
 public interface IFarmaciaRepository extends JpaRepository<Farmacia,Integer> {
-    //Buscar Farmcia por nombre
-    Farmacia findByNombre(String nombre);
-    //Verificar horario de Farmcia
+    // Buscar Farmacia por nombre
+    Farmacia findByNombreFarmacia(String nombreFarmacia); // Cambio de 'findByNombre' a 'findByNombreFarmacia'
+
+    // Verificar horario de Farmacia
     @Query("SELECT new pe.edu.upc.demopillcontrol.dtos.VerificarHorarioFarmaciaDTO(f.nombreFarmacia, f.horarioAperturaFarmacia, f.horarioCierreFarmacia)" +
             "FROM Farmacia f WHERE f.idFarmacia = :idFarmacia ")
     List<VerificarHorarioFarmaciaDTO> obtenerFarmaciaPorId(@Param("idFarmacia") Long idFarmacia);
 
-    //Query
-
-    //Listar farmacias que abren temprano segun dato ingresado
+    // Listar farmacias que abren temprano según dato ingresado
     @Query("SELECT new pe.edu.upc.demopillcontrol.dtos.QueryFarmaciaHorarioDTO(f.nombreFarmacia, f.direccionFarmacia, f.horarioAperturaFarmacia) " +
             "FROM Farmacia f WHERE f.horarioAperturaFarmacia < :horaApertura")
     List<QueryFarmaciaHorarioDTO> obtenerFarmaciasQueAbrenTemprano(@Param("horaApertura") LocalTime horaApertura);
 
-    //Mostrar la ubicación (latitud/longitud) de todas las farmacias registradas
+    // Mostrar la ubicación (latitud/longitud) de todas las farmacias registradas
     @Query("SELECT new pe.edu.upc.demopillcontrol.dtos.QueryFarmaciaUbicacionDTO(f.nombreFarmacia, f.latitudFarmacia, f.longitudFarmacia) " +
             "FROM Farmacia f")
     List<QueryFarmaciaUbicacionDTO> obtenerUbicacionesDeFarmacias();
