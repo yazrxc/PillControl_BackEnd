@@ -58,7 +58,7 @@ public class DiagnosticoController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/{idDiagnostico}")
+    @GetMapping("/{findbyidDiagnostico}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<DiagnosticoDTO> findDiagnosticosByUsuarioId(@RequestParam int idUsuario) {
         return dS.findDiagnosticosByUsuarioId(idUsuario).stream().map( x ->{
