@@ -41,4 +41,9 @@ public class TratamientoServiceImplement implements ITratamientoService {
     public List<Tratamiento> list() {
         return tR.findAll();
     }
+
+    @Override
+    public Tratamiento listarId(int idTratamiento) {
+        return tR.findById(idTratamiento).orElse(new Tratamiento());
+    }
 }

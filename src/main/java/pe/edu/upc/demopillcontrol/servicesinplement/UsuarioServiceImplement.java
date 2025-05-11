@@ -18,6 +18,11 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
+    public Usuario listarId(int idUsuario) {
+        return uR.findById(idUsuario).orElse(new Usuario());
+    }
+
+    @Override
     public void insertar(Usuario u) {
         uR.save(u);
     }

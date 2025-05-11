@@ -25,6 +25,14 @@ public class UsuarioController {
             return modelMapper.map(x, UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/{buscarId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public UsuarioDTO listarId(@PathVariable ("idUsuario") int idUsuario) {
+        ModelMapper m=new ModelMapper();
+        UsuarioDTO dto=m.map(uS.listarId(idUsuario),UsuarioDTO.class);
+        return dto;
+    }
+
     @PostMapping
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void insertar(@RequestBody UsuarioDTO uDto){
@@ -62,4 +70,5 @@ public class UsuarioController {
             return m.map(x,UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
+
 }

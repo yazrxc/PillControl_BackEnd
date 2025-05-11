@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ITratamientoService {
     public List<Tratamiento> list();
+    public Tratamiento listarId(int idTratamiento);
     public void insert(Tratamiento t);
     public void update(Tratamiento t);
     public void delete(int idTratamiento);
