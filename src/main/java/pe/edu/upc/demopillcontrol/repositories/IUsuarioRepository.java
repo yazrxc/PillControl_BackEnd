@@ -31,4 +31,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query(value="SELECT r FROM RolUsuario r WHERE r.usuario.idusuario = :idUsuario", nativeQuery = true)
     public List<Usuario> listarRoles(@Param("idUsuario") int idUsuario);
+
+    @Query(value = "SELECT AVG(u.edadUsuario) FROM Usuario u WHERE u.idEspecialista = :idEspecialista", nativeQuery = true)
+    Double obtenerEdadPromedioPorEspecialista(@Param("idEspecialista") int idEspecialista);
+
 }

@@ -1,5 +1,6 @@
 package pe.edu.upc.demopillcontrol.servicesinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.demopillcontrol.entities.Usuario;
 
 import java.util.List;
@@ -12,4 +13,7 @@ public interface IUsuarioService {
     public void eliminar(int idUsuario);
     public List<Usuario> buscarPorCorreo(String correoUsuario);
     public List<Usuario> listarRoles(int idUsuario);
+
+    // Querys
+    Double obtenerEdadPromedioPorEspecialista(int idEspecialista);
 }
