@@ -19,6 +19,12 @@ public class RecetaServiceImplement implements IRecetaService {
     public void insert(Receta r) {
         reR.save(r);
     }
+
+    @Override
+    public Receta findById(int idReceta) {
+        return reR.findById(idReceta).orElse(new Receta());
+    }
+
     @Override
     public void update(Receta r) {
         reR.save(r);
@@ -36,6 +42,11 @@ public class RecetaServiceImplement implements IRecetaService {
     @Override
     public List<Receta> findByFechaInicioReceta(LocalDate fecha_inicio_receta) {
         return reR.findByFechaInicioReceta(fecha_inicio_receta);
+    }
+
+    @Override
+    public List<Receta> findRecetaVencidaByUsuarioId(int idUsuario) {
+        return reR.findRecetaVencidaByUsuarioId(idUsuario);
     }
 
     @Override
