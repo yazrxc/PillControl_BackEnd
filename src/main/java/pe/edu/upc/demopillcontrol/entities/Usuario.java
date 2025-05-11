@@ -1,5 +1,6 @@
 package pe.edu.upc.demopillcontrol.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -42,13 +43,14 @@ public class Usuario implements Serializable {
     @Column(name = "fechaRegistroUsuario", nullable = false, length = 100)
     private LocalDate fechaRegistroUsuario;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idUsuario")
-    private List<RolUsuario> roles;
-
     @ManyToOne
     @JoinColumn(name = "idEspecialista")
     private Especialista especialista;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idUsuario")
+    private List<RolUsuario> roles;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -138,19 +140,19 @@ public class Usuario implements Serializable {
         this.fechaRegistroUsuario = fechaRegistroUsuario;
     }
 
-    public List<RolUsuario> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RolUsuario> roles) {
-        this.roles = roles;
-    }
-
     public Especialista getEspecialista() {
         return especialista;
     }
 
     public void setEspecialista(Especialista especialista) {
         this.especialista = especialista;
+    }
+
+    public List<RolUsuario> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RolUsuario> roles) {
+        this.roles = roles;
     }
 }

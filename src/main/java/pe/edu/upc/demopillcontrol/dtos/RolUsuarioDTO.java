@@ -1,10 +1,13 @@
 package pe.edu.upc.demopillcontrol.dtos;
 
 
+import pe.edu.upc.demopillcontrol.entities.Usuario;
+
 public class RolUsuarioDTO {
     private int idrol;
     private String tiporol;
     private String descripcion;
+    private Usuario user;
 
     public int getIdrol() {
         return idrol;
@@ -28,5 +31,13 @@ public class RolUsuarioDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 }

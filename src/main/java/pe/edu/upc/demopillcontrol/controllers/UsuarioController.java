@@ -2,6 +2,7 @@ package pe.edu.upc.demopillcontrol.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.UsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Usuario;
@@ -17,6 +18,7 @@ public class UsuarioController {
     private IUsuarioService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listar() {
         return uS.listar().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -24,6 +26,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void insertar(@RequestBody UsuarioDTO uDto){
         ModelMapper modelMapper = new ModelMapper();
         Usuario u = modelMapper.map(uDto,Usuario.class);
@@ -31,6 +34,7 @@ public class UsuarioController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void modificar(@RequestBody UsuarioDTO uDto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(uDto,Usuario.class);
@@ -38,11 +42,13 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{idUsuario}")
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void eliminar(@PathVariable ("idUsuario") int idUsuario){
         uS.eliminar(idUsuario);
     }
 
     @GetMapping("/busquedascorreo")
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public List<UsuarioDTO> buscarCorreo(@RequestParam String correo){
         return uS.buscarPorCorreo(correo).stream().map(x ->{
             ModelMapper m = new ModelMapper();

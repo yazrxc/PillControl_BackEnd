@@ -18,4 +18,5 @@ public interface IMedicamentoRepository extends JpaRepository<Medicamento, Integ
     // listar por presentacion
     @Query("select m from Medicamento m where m.presentacion like %:presentacion")
     public List<Medicamento> listarPorPresentacion(@Param("presentacion") String presentacion);
+
 }

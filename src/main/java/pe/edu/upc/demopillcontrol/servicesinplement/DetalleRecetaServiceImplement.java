@@ -3,6 +3,7 @@ package pe.edu.upc.demopillcontrol.servicesinplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
+import pe.edu.upc.demopillcontrol.entities.Medicamento;
 import pe.edu.upc.demopillcontrol.repositories.IDetalleRecetaRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IDetalleRecetaService;
 
@@ -18,6 +19,12 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
     public void insert(DetalleReceta dr) {
         drR.save(dr);
     }
+
+    @Override
+    public DetalleReceta listId(int idDetalleReceta) {
+        return drR.findById(idDetalleReceta).orElse(new DetalleReceta());
+    }
+
     @Override
     public void update(DetalleReceta dr) {
         drR.save(dr);
@@ -26,6 +33,12 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
     public void delete(int idDetalleReceta) {
         drR.deleteById(idDetalleReceta);
     }
+
+    @Override
+    public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario) {
+        return drR.getMedicamentosByGravedadDiagnostico(id_usuario);
+    }
+
     @Override
     public List<DetalleReceta> list() {
         return drR.findAll();

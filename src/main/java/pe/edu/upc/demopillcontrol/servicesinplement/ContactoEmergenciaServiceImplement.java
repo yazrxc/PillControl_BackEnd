@@ -1,6 +1,7 @@
 package pe.edu.upc.demopillcontrol.servicesinplement;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demopillcontrol.entities.ContactoEmergencia;
 
@@ -44,5 +45,15 @@ public class ContactoEmergenciaServiceImplement implements IContactoEmergenciaSe
     @Override
     public List<ContactoEmergencia> buscarPorNombrecontacto(String nombre) {
         return cR.buscarPorNombrecontacto(nombre);
+    }
+
+    @Override
+    public List<ContactoEmergencia> buscarPorCorreo(@Param("correo") String correo){
+        return  cR.buscarPorCorreo(correo);
+    }
+
+    @Override
+    public List<String[]> listarUsuariosConDiagnosticoGraveSinContacto(){
+        return cR.listarUsuariosConDiagnosticoGraveSinContacto();
     }
 }
