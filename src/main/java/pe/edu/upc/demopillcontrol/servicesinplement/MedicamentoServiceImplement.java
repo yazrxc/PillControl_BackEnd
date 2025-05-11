@@ -30,6 +30,11 @@ public class MedicamentoServiceImplement implements IMedicamentoService {
     }
 
     @Override
+    public Medicamento listarporID(int id) {
+        return mR.findById(id).orElse(new Medicamento());
+    }
+
+    @Override
     public void modificar(Medicamento m) {
         mR.save(m);
     }

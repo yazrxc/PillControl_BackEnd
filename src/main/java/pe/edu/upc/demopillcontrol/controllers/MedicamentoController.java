@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.MedicamentoDTO;
-import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
 import pe.edu.upc.demopillcontrol.entities.Medicamento;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IMedicamentoService;
 
@@ -40,6 +39,14 @@ public class MedicamentoController {
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void eliminar(@PathVariable("id_medicamento") int id_medicamento) {
         mS.eliminar(id_medicamento);
+    }
+
+    @GetMapping("/{id_medicamento}")
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
+    public MedicamentoDTO listarPorID(@PathVariable("id_medicamento") int id) {
+        ModelMapper modelMapper = new ModelMapper();
+        MedicamentoDTO dto = modelMapper.map(mS.listarporID(id), MedicamentoDTO.class);
+        return dto;
     }
 
     @PutMapping
