@@ -68,13 +68,4 @@ public class MedicamentoController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/busquedas-medicamentos-graves/{id_usuario}")
-    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public List<MedicamentosByGravedadDTO> listarPorPresentacion(@PathVariable("id_usuario") int id_usuario) {
-        return mS.getMedicamentosByGravedadDiagnostico(id_usuario).stream().map( x->{
-            ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x,MedicamentosByGravedadDTO.class);
-        }).collect(Collectors.toList());
-    }
-
 }

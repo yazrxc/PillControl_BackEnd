@@ -14,5 +14,4 @@ public interface IMedicamentoService {
 
     public List<Medicamento> listarPorNombre(String nombre);
     public List<Medicamento> listarPorPresentacion(String presentacion);
-    public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario);
 }
