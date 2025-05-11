@@ -43,4 +43,9 @@ public class MedicamentoServiceImplement implements IMedicamentoService {
     public List<Medicamento> listarPorPresentacion(String presentacion) {
         return mR.listarPorPresentacion(presentacion);
     }
+
+    @Override
+    public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario) {
+        return mR.getMedicamentosByGravedadDiagnostico(id_usuario);
+    }
 }
