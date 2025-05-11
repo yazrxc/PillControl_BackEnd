@@ -27,6 +27,15 @@ public class EspecialistaController {
             return modelMapper.map(x, EspecialistaDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/{buscarId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public EspecialistaDTO listarId(@PathVariable ("idEspecialista") int idEspecialista) {
+        ModelMapper m=new ModelMapper();
+        EspecialistaDTO dto=m.map(eS.listarId(idEspecialista),EspecialistaDTO.class);
+        return dto;
+    }
+
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody EspecialistaDTO eDto){
@@ -55,5 +64,6 @@ public class EspecialistaController {
             return m.map(x,UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
+
 
 }

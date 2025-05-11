@@ -20,6 +20,11 @@ public class EspecialistaServiceImplement implements IEspecialistaService {
     }
 
     @Override
+    public Especialista listarId(int idEspecialista) {
+        return eR.findById(idEspecialista).orElse(new Especialista());
+    }
+
+    @Override
     public void insert(Especialista e) {
         eR.save(e);
     }
