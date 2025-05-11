@@ -10,6 +10,7 @@ public interface IMedicamentoService {
     public List<Medicamento> listarMedicamentos();
     public void insertar(Medicamento m);
     public void eliminar(int id);
+    public Medicamento listarporID(int id);
     public void modificar(Medicamento m);
 
     public List<Medicamento> listarPorNombre(String nombre);
