@@ -1,5 +1,6 @@
 package pe.edu.upc.demopillcontrol.servicesinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.demopillcontrol.entities.Tratamiento;
 
 import java.util.List;
@@ -12,4 +13,7 @@ public interface ITratamientoService {
     public void delete(int idTratamiento);
     public List<Tratamiento> listarPorEstado(String estadoTratamiento);
     public List<Tratamiento> listarPorUsuario(int idUsuario);
+
+    // QUERY N1
+    public List<Tratamiento> listarActivosPorEspecialista(int idEspecialista);
 }
