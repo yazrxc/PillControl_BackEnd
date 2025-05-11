@@ -41,6 +41,14 @@ public class DiagnosticoController {
         dS.eliminar(idDiagnostico);
     }
 
+    @GetMapping("/{idDiagnostico}")
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
+    public DiagnosticoDTO listarporID(@PathVariable("idDiagnostico") int idDiagnostico){
+        ModelMapper m = new ModelMapper();
+        DiagnosticoDTO dto =m.map(dS.listarporID(idDiagnostico),DiagnosticoDTO.class);
+        return dto;
+    }
+
     @GetMapping()
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public List<DiagnosticoDTO> listar() {

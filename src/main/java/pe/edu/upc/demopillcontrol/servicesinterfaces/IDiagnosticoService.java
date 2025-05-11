@@ -18,6 +18,9 @@ public interface IDiagnosticoService {
     // eliminar
     public void eliminar (int idDiagnostico);
 
+    // listar por ID
+    public Diagnostico listarporID(int idDiagnostico);
+
     // listar
     public List<Diagnostico> listar();
 

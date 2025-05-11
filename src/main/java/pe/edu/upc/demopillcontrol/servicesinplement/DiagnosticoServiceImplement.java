@@ -31,6 +31,11 @@ public class DiagnosticoServiceImplement implements IDiagnosticoService {
     }
 
     @Override
+    public Diagnostico listarporID(int idDiagnostico) {
+        return dR.findById(idDiagnostico).orElse(new Diagnostico());
+    }
+
+    @Override
     public List<Diagnostico> listar() {
         return dR.findAll();
     }
