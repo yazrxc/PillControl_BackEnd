@@ -15,6 +15,16 @@ public class TratamientoServiceImplement implements ITratamientoService {
     private ITratamientoRepository tR;
 
     @Override
+    public List<Tratamiento> list() {
+        return tR.findAll();
+    }
+
+    @Override
+    public Tratamiento listarId(int idTratamiento) {
+        return tR.findById(idTratamiento).orElse(new Tratamiento());
+    }
+
+    @Override
     public void insert(Tratamiento t) {
         tR.save(t);
     }
@@ -34,16 +44,13 @@ public class TratamientoServiceImplement implements ITratamientoService {
 
     @Override
     public List<Tratamiento> listarPorUsuario(int idUsuario) {
-        return List.of();
+        return tR.listarPorUsuario(idUsuario);
+    }
+    // QUERY N1
+    @Override
+    public List<Tratamiento> listarActivosPorEspecialista(int idEspecialista) {
+        return tR.listarActivosPorEspecialista(idEspecialista);
     }
 
-    @Override
-    public List<Tratamiento> list() {
-        return tR.findAll();
-    }
 
-    @Override
-    public Tratamiento listarId(int idTratamiento) {
-        return tR.findById(idTratamiento).orElse(new Tratamiento());
-    }
 }

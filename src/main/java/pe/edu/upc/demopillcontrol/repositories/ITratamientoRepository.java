@@ -13,4 +13,6 @@ public interface ITratamientoRepository extends JpaRepository<Tratamiento,Intege
 
     @Query(value = "SELECT t FROM Tratamiento t WHERE t.usuario.idusuario = :idUsuario", nativeQuery = true)
     List<Tratamiento> listarPorUsuario(@Param("idUsuario") int idUsuario);
+    @Query(value = "SELECT t.* FROM Tratamiento t INNER JOIN Usuario u ON t.idUsuario = u.idUsuario WHERE t.estadoTratamiento = 'Activo' AND u.idEspecialista = :idEspecialista", nativeQuery = true)
+    List<Tratamiento> listarActivosPorEspecialista(@Param("idEspecialista") int idEspecialista);
 }
