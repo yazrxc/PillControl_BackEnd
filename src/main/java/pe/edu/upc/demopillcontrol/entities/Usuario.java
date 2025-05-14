@@ -14,12 +14,13 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
+    @JsonIgnore
     @Column(length = 30, unique = true)
     private String username;
-
+    @JsonIgnore
     @Column(length = 200)
     private String password;
-
+    @JsonIgnore
     private Boolean enabled;
 
     @Column(name = "nombre", nullable = false, length = 50)

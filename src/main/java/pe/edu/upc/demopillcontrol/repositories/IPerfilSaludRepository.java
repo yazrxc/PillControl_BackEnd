@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.demopillcontrol.entities.Diagnostico;
 import pe.edu.upc.demopillcontrol.entities.PerfilSalud;
 
 import java.util.List;
@@ -15,16 +14,16 @@ public interface IPerfilSaludRepository extends JpaRepository<PerfilSalud, Integ
     @Query(value = "SELECT u.nombre AS paciente_nombre, \n" +
             "       ps.gruposanguineo AS grupo_sanguineo\n" +
             "FROM Usuario u\n" +
-            "JOIN PerfilSalud ps ON u.idUsuario = ps.idUsuario\n" +
-            "WHERE u.idUsuario = id_usuario", nativeQuery = true)
-    List<PerfilSalud> buscargruposanguineo(@Param("id_usuario") int id_usuario);
+            "JOIN Perfil_Salud ps ON u.id_Usuario = ps.id_Usuario\n" +
+            "WHERE u.id_Usuario = :idUsuario", nativeQuery = true)
+    List<String[]> buscargruposanguineo(@Param("idUsuario") int idUsuario);
 
     @Query(value="SELECT u.nombre AS paciente_nombre, \n" +
             "       ps.condiciones AS condiciones_medicas\n" +
-            "FROM PerfilSalud ps\n" +
+            "FROM Perfil_Salud ps\n" +
             "JOIN Usuario u ON ps.id_Usuario = u.id_Usuario\n" +
-            "WHERE ps.id_Usuario = id_usuario; ",nativeQuery = true)
-    List<PerfilSalud> buscarcondiciones(@Param("id_usuario") int id_usuario);
+            "WHERE ps.id_Usuario = :idUsuario; ",nativeQuery = true)
+    List<String[]> buscarcondiciones(@Param("idUsuario") int idUsuario);
 
     @Query(value ="SELECT \n" +
             "    u.nombre, ps.peso, ps.altura, ps.gruposanguineo,u.telefono_usuario,ROUND((ps.peso / POWER(ps.altura / 100.0, 2))::numeric, 2) AS IMC,\n" +

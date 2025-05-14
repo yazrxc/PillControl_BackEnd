@@ -22,10 +22,10 @@ public class UsuarioController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuariologinDTO> listar() {
+    public List<UsuarioDTO> listar() {
         return uS.listar().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x, UsuariologinDTO.class);
+            return modelMapper.map(x, UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
     @GetMapping("/{buscarId}")
@@ -38,7 +38,7 @@ public class UsuarioController {
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public void insertar(@RequestBody UsuarioDTO uDto){
+    public void insertar(@RequestBody UsuariologinDTO uDto){
         ModelMapper modelMapper = new ModelMapper();
         Usuario u = modelMapper.map(uDto,Usuario.class);
         uS.insertar(u);
@@ -46,7 +46,7 @@ public class UsuarioController {
 
     @PutMapping
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public void modificar(@RequestBody UsuarioDTO uDto){
+    public void modificar(@RequestBody UsuariologinDTO uDto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(uDto,Usuario.class);
         uS.modificar(u);
