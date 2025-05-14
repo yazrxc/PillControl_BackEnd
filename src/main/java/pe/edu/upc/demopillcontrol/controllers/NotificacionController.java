@@ -2,9 +2,13 @@ package pe.edu.upc.demopillcontrol.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
+import pe.edu.upc.demopillcontrol.dtos.NotificacionesPorUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Notificacion;
+import pe.edu.upc.demopillcontrol.servicesinplement.NotificacionServiceImplement;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.INotificacionService;
 
 import java.util.List;
@@ -41,6 +45,15 @@ public class NotificacionController {
         return nS.list().stream().map( x ->{
             ModelMapper m=new ModelMapper();
             return m.map(x,NotificacionDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/notificaciones-usuario/{nombre}")
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
+    public List<NotificacionesPorUsuarioDTO> obtenerNotificacionesPorNombre(@PathVariable("nombre") String nombre) {
+        return nS.getNotificacionByNombre(nombre).stream().map(x -> {
+            ModelMapper modelMapper = new ModelMapper();
+            return modelMapper.map(x, NotificacionesPorUsuarioDTO.class);
         }).collect(Collectors.toList());
     }
 }
