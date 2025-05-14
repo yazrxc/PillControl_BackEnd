@@ -40,6 +40,11 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
     }
 
     @Override
+    public List<DetalleReceta> getDetalleRecetaByUsuario(int idUsuario, String nombre) {
+        return drR.getDetalleRecetaByUsuario(idUsuario, nombre);
+    }
+
+    @Override
     public List<DetalleReceta> list() {
         return drR.findAll();
     }

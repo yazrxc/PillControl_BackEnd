@@ -14,4 +14,5 @@ public interface IDetalleRecetaService {
     public void delete(int idDetalleReceta);
     //public List<DetalleReceta> buscarPorReceta(int idReceta);
     public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario);
+    public List<DetalleReceta> getDetalleRecetaByUsuario(int idUsuario, String nombre);
 }
