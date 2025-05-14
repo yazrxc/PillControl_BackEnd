@@ -1,6 +1,7 @@
 package pe.edu.upc.demopillcontrol.servicesinterfaces;
 
 import org.springframework.data.repository.query.Param;
+import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.entities.Medicamento;
 
@@ -14,5 +15,5 @@ public interface IDetalleRecetaService {
     public void delete(int idDetalleReceta);
     //public List<DetalleReceta> buscarPorReceta(int idReceta);
     public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario);
-    public List<DetalleReceta> getDetalleRecetaByUsuario(int idUsuario, String nombre);
+    public List<DetalleRecetaSegunUsuarioDTO> getDetalleRecetaByUsuario(int idUsuario, String nombre);
 }

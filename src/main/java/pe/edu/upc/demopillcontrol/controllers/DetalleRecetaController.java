@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaDTO;
+import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
 import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IDetalleRecetaService;
@@ -69,13 +70,13 @@ public class DetalleRecetaController {
 
     @GetMapping("/detalle-receta/usuario")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public List<DetalleRecetaDTO> obtenerDetallesPorUsuario(
+    public List<DetalleRecetaSegunUsuarioDTO> obtenerDetallesPorUsuario(
             @RequestParam(required = true) int idUsuario,
             @RequestParam(required = true) String nombre
     ) {
         return drS.getDetalleRecetaByUsuario(idUsuario, nombre).stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x, DetalleRecetaDTO.class);
+            return modelMapper.map(x, DetalleRecetaSegunUsuarioDTO.class);
         }).collect(Collectors.toList());
     }
 }

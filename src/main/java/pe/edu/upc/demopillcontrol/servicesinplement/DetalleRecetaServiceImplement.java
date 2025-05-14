@@ -2,6 +2,7 @@ package pe.edu.upc.demopillcontrol.servicesinplement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.entities.Medicamento;
 import pe.edu.upc.demopillcontrol.repositories.IDetalleRecetaRepository;
@@ -40,7 +41,7 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
     }
 
     @Override
-    public List<DetalleReceta> getDetalleRecetaByUsuario(int idUsuario, String nombre) {
+    public List<DetalleRecetaSegunUsuarioDTO> getDetalleRecetaByUsuario(int idUsuario, String nombre) {
         return drR.getDetalleRecetaByUsuario(idUsuario, nombre);
     }
 

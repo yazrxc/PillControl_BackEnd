@@ -1,6 +1,6 @@
 package pe.edu.upc.demopillcontrol.dtos;
 
-import java.time.LocalTime;
+import java.sql.Time;
 
 public class DetalleRecetaSegunUsuarioDTO {
     //Se van a listar los detalles de sus recetas que se ingresaron según el usuario
@@ -8,12 +8,22 @@ public class DetalleRecetaSegunUsuarioDTO {
     private int idReceta;
     private int id_medicamento;
     private int dosisDetalleReceta;
-    private LocalTime horaDetalleReceta;
+    private Time horaDetalleReceta;
     private int intervaloDetalleReceta;
     private int frecuenciaDetalleReceta;
 
     public int getIdDetalleReceta() {
         return idDetalleReceta;
+    }
+
+    public DetalleRecetaSegunUsuarioDTO(int idDetalleReceta, int idReceta, int id_medicamento, int dosisDetalleReceta, Time horaDetalleReceta, int intervaloDetalleReceta, int frecuenciaDetalleReceta) {
+        this.idDetalleReceta = idDetalleReceta;
+        this.idReceta = idReceta;
+        this.id_medicamento = id_medicamento;
+        this.dosisDetalleReceta = dosisDetalleReceta;
+        this.horaDetalleReceta = horaDetalleReceta;
+        this.intervaloDetalleReceta = intervaloDetalleReceta;
+        this.frecuenciaDetalleReceta = frecuenciaDetalleReceta;
     }
 
     public void setIdDetalleReceta(int idDetalleReceta) {
@@ -44,11 +54,11 @@ public class DetalleRecetaSegunUsuarioDTO {
         this.dosisDetalleReceta = dosisDetalleReceta;
     }
 
-    public LocalTime getHoraDetalleReceta() {
+    public Time getHoraDetalleReceta() {
         return horaDetalleReceta;
     }
 
-    public void setHoraDetalleReceta(LocalTime horaDetalleReceta) {
+    public void setHoraDetalleReceta(Time horaDetalleReceta) {
         this.horaDetalleReceta = horaDetalleReceta;
     }
 
