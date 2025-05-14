@@ -1,17 +1,14 @@
 package pe.edu.upc.demopillcontrol.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.demopillcontrol.entities.Especialista;
 import pe.edu.upc.demopillcontrol.entities.RolUsuario;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class UsuarioDTO {
+public class UsuariologinDTO {
     private int idUsuario;
     private String username;
-    private String password;
-    private Boolean enabled;
     private String nombre;
     private int edadUsuario;
     private String correoUsuario;
@@ -35,22 +32,6 @@ public class UsuarioDTO {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
     }
 
     public String getNombre() {

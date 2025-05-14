@@ -3,6 +3,7 @@ package pe.edu.upc.demopillcontrol.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.entities.Medicamento;
 
@@ -23,4 +24,20 @@ public interface IDetalleRecetaRepository extends JpaRepository<DetalleReceta,In
             " AND r.id_usuario = :idUsuario;", nativeQuery = true)
     public List<Medicamento> getMedicamentosByGravedadDiagnostico(@Param("id_usuario") int id_usuario);
 
+    //Detalles de las recetas ingresadas según el usuario
+    @Query(value = "SELECT \n" +
+            "    dr.id_detalle_receta,\n" +
+            "    dr.id_receta,\n" +
+            "    dr.id_medicamento,\n" +
+            "    dr.dosis_detalle_receta,\n" +
+            "    dr.hora_detalle_receta,\n" +
+            "    dr.intervalo_detalle_receta,\n" +
+            "    dr.frecuencia_detalle_receta\n" +
+            "FROM usuario u\n" +
+            "JOIN diagnostico d ON u.id_usuario = d.id_usuario\n" +
+            "JOIN receta r ON d.id_diagnostico = r.id_diagnostico\n" +
+            "JOIN detalle_receta dr ON r.id_receta = dr.id_receta\n" +
+            "WHERE u.id_usuario = :idUsuario\n" +
+            "   OR u.nombre ILIKE :nombre;", nativeQuery = true)
+    public List<DetalleRecetaSegunUsuarioDTO> getDetalleRecetaByUsuario(@Param("idUsuario") int idUsuario, @Param("nombre") String nombre);
 }

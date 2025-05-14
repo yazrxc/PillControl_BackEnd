@@ -66,8 +66,9 @@ public class FarmaciaController {
 
     //Querys
     @GetMapping("/farmacias-abren-temprano")
-    public List<QueryFarmaciaHorarioDTO> obtenerFarmaciasQueAbrenTemprano (LocalTime horaApertura){
-        return  fS.obtenerFarmaciasQueAbrenTemprano(horaApertura);
+    public List<QueryFarmaciaHorarioDTO> obtenerFarmaciasQueAbrenTemprano(@RequestParam String horaApertura) {
+        LocalTime hora = LocalTime.parse(horaApertura);
+        return fS.obtenerFarmaciasQueAbrenTemprano(hora);
     }
     @GetMapping("/ubicaciones")
     public List<QueryFarmaciaUbicacionDTO> obtenerUbicacionesDeFarmacias (){

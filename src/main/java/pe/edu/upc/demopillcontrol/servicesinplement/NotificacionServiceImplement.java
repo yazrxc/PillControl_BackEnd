@@ -2,6 +2,8 @@ package pe.edu.upc.demopillcontrol.servicesinplement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
+import pe.edu.upc.demopillcontrol.dtos.NotificacionesPorUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Notificacion;
 import pe.edu.upc.demopillcontrol.repositories.INotificacionRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.INotificacionService;
@@ -29,5 +31,10 @@ public class NotificacionServiceImplement implements INotificacionService {
     @Override
     public List<Notificacion> list() {
         return nR.findAll();
+    }
+
+    @Override
+    public List<NotificacionesPorUsuarioDTO> getNotificacionByNombre(String nombre) {
+        return nR.getNotificacionByNombre(nombre);
     }
 }

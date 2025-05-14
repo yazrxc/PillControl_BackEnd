@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.PerfilSaludDTO;
 import pe.edu.upc.demopillcontrol.dtos.PerfilTimeDTO;
-import pe.edu.upc.demopillcontrol.dtos.TratamientoDTO;
 import pe.edu.upc.demopillcontrol.entities.PerfilSalud;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IPerfilSaludService;
 

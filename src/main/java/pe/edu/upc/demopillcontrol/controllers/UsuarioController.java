@@ -2,9 +2,12 @@ package pe.edu.upc.demopillcontrol.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.UsuarioDTO;
+import pe.edu.upc.demopillcontrol.dtos.UsuariologinDTO;
 import pe.edu.upc.demopillcontrol.entities.Usuario;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IUsuarioService;
 
@@ -19,12 +22,20 @@ public class UsuarioController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioDTO> listar() {
+    public List<UsuariologinDTO> listar() {
         return uS.listar().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x, UsuarioDTO.class);
+            return modelMapper.map(x, UsuariologinDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/{buscarId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public UsuarioDTO listarId(@PathVariable ("idUsuario") int idUsuario) {
+        ModelMapper m=new ModelMapper();
+        UsuarioDTO dto=m.map(uS.listarId(idUsuario),UsuarioDTO.class);
+        return dto;
+    }
+
     @PostMapping
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void insertar(@RequestBody UsuarioDTO uDto){
@@ -56,10 +67,17 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
     @GetMapping("/busquedasroles")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listarRoles(@RequestParam int idUsuario){
         return uS.listarRoles(idUsuario).stream().map(x ->{
             ModelMapper m = new ModelMapper();
             return m.map(x,UsuarioDTO.class);
         }).collect(Collectors.toList());
+    }
+    //Query
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/edadpromedioUsuarioEspecialista")
+    public ResponseEntity<Double> edadPromedioPorEspecialista(@RequestParam int idEspecialista) {
+        return new ResponseEntity<>(uS.obtenerEdadPromedioPorEspecialista(idEspecialista), HttpStatus.OK);
     }
 }
