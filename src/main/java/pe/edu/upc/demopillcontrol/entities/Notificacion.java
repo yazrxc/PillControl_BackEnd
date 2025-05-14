@@ -10,8 +10,8 @@ public class Notificacion {
     private int idNotificacion;
     @Column(name = "estadoNotificacion", nullable = false)
     private Boolean estadoNotificacion;
-    @Column(name = "mensajeNotificaion", nullable = false, length = 250)
-    private String mensajeNotificaion;
+    @Column(name = "mensajeNotificacion", nullable = false, length = 250)
+    private String mensajeNotificacion;
 
     @ManyToOne
     @JoinColumn(name = "idDetalleReceta")
@@ -20,10 +20,10 @@ public class Notificacion {
     public Notificacion() {
     }
 
-    public Notificacion(int idNotificacion, boolean estadoNotificacion, String mensajeNotificaion, DetalleReceta detallereceta) {
+    public Notificacion(int idNotificacion, boolean estadoNotificacion, String mensajeNotificacion, DetalleReceta detallereceta) {
         this.idNotificacion = idNotificacion;
         this.estadoNotificacion = estadoNotificacion;
-        this.mensajeNotificaion = mensajeNotificaion;
+        this.mensajeNotificacion = mensajeNotificacion;
         this.detallereceta = detallereceta;
     }
 
@@ -44,11 +44,11 @@ public class Notificacion {
     }
 
     public String getMensajeNotificaion() {
-        return mensajeNotificaion;
+        return mensajeNotificacion;
     }
 
     public void setMensajeNotificaion(String mensajeNotificaion) {
-        this.mensajeNotificaion = mensajeNotificaion;
+        this.mensajeNotificacion = mensajeNotificacion;
     }
 
     public DetalleReceta getDetallereceta() {
