@@ -14,9 +14,11 @@ public interface IPerfilSaludService {
 
     void delete(int idPerfilSalud);
 
-    List<PerfilSalud> buscargruposanguineo(int id_usuario);
+    PerfilSalud listId(int idPerfilSalud);
 
-    List<PerfilSalud> buscarcondiciones(int id_usuario);
+    List<String[]> buscargruposanguineo(int id_usuario);
+
+    List<String[]> buscarcondiciones(int id_usuario);
 
     List<String[]> listperfilPorMesYAnio(@Param("mes") int mes, @Param("anio") int anio);
 }

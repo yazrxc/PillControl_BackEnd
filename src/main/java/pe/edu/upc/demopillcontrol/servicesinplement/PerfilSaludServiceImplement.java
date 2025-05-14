@@ -34,11 +34,16 @@ public class PerfilSaludServiceImplement implements IPerfilSaludService {
     }
 
     @Override
-    public List<PerfilSalud> buscargruposanguineo(int id_usuario) {
+    public PerfilSalud listId(int idPerfilSalud) {
+        return pR.findById(idPerfilSalud).orElse(new PerfilSalud());
+    }
+
+    @Override
+    public List<String[]> buscargruposanguineo(int id_usuario) {
         return pR.buscargruposanguineo(id_usuario);
     }
     @Override
-    public List<PerfilSalud> buscarcondiciones(int id_usuario){
+    public List<String[]> buscarcondiciones(int id_usuario){
         return pR.buscarcondiciones(id_usuario);
     }
 
