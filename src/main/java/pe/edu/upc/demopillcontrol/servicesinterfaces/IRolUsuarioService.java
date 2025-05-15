@@ -17,4 +17,5 @@ public interface IRolUsuarioService {
     void delete(int idrol);
 
     List<RolUsuario> listarPortipo(String rol);
+    int contarPorRol(String tiporol);
 }

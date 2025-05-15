@@ -8,6 +8,7 @@ import pe.edu.upc.demopillcontrol.repositories.IUsuarioRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
+
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
@@ -45,11 +46,6 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Override
     public List<Usuario> buscarPorCorreo(String correoUsuario) {
         return uR.buscarPorCorreo(correoUsuario);
-    }
-
-    @Override
-    public List<Usuario> listarRoles(int idUsuario) {
-        return uR.listarRoles(idUsuario);
     }
 
     @Override
