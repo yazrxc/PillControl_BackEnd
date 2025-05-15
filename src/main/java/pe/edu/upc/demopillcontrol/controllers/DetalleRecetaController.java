@@ -4,9 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaDTO;
-import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
-import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
+import pe.edu.upc.demopillcontrol.dtos.*;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IDetalleRecetaService;
 
@@ -57,6 +55,18 @@ public class DetalleRecetaController {
             ModelMapper m = new ModelMapper();
             return m.map(x, DetalleRecetaDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/horas-medicamentos")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<HoraIngerirMedicamentoDTO> obtenerHorasYMedicamentos() {
+        return drS.getNombreYHoraMedicamento();
+    }
+
+    @GetMapping("/dosis-intervalos")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<DosisIntervaloSegunMedicamentoDTO> obtenerDosisEIntervalos() {
+        return drS.getDosisEIntervalobyMedicamento();
     }
 
     @GetMapping("/busquedas-medicamentos-graves/{id_usuario}")
