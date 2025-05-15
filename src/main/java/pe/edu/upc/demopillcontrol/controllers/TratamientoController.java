@@ -62,7 +62,7 @@ public class TratamientoController {
             return m.map(x, TratamientoDTO.class);
         }).collect(Collectors.toList());
     }
-
+    //Query
     @GetMapping("/tratamientosusuario")
     public List<TratamientoDTO> listarPorUsuario(@RequestParam int idUsuario) {
         return tS.listarPorUsuario(idUsuario).stream().map(x -> {
