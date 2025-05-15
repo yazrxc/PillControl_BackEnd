@@ -28,10 +28,12 @@ public class TratamientoServiceImplement implements ITratamientoService {
     public void insert(Tratamiento t) {
         tR.save(t);
     }
+
     @Override
     public void update(Tratamiento t) {
         tR.save(t);
     }
+
     @Override
     public void delete(int idTratamiento) {
         tR.deleteById(idTratamiento);
@@ -46,6 +48,7 @@ public class TratamientoServiceImplement implements ITratamientoService {
     public List<Tratamiento> listarPorUsuario(int idUsuario) {
         return tR.listarPorUsuario(idUsuario);
     }
+
     // QUERY N1
     @Override
     public List<Tratamiento> listarActivosPorEspecialista(int idEspecialista) {
