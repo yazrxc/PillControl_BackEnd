@@ -27,7 +27,7 @@ public class TratamientoController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/{buscarId}")
+    @GetMapping("/{idTratamiento}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public TratamientoDTO listarId(@PathVariable ("idTratamiento") int idTratamiento) {
         ModelMapper m=new ModelMapper();
