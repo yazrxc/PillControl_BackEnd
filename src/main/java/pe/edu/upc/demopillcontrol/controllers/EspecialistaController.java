@@ -28,7 +28,7 @@ public class EspecialistaController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/{buscarId}")
+    @GetMapping("/{idEspecialista}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public EspecialistaDTO listarId(@PathVariable ("idEspecialista") int idEspecialista) {
         ModelMapper m=new ModelMapper();
@@ -58,10 +58,10 @@ public class EspecialistaController {
 
     @GetMapping("/busquedasespecialidad")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioDTO> buscarEspecialidad(@RequestParam String especialidad){
+    public List<EspecialistaDTO> buscarEspecialidad(@RequestParam String especialidad){
         return eS.buscarEspecialidad(especialidad).stream().map(x ->{
             ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
+            return m.map(x,EspecialistaDTO.class);
         }).collect(Collectors.toList());
     }
 
