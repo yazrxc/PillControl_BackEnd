@@ -52,20 +52,22 @@ public class ContactoEmergenciaController {
     }
 
     @DeleteMapping("/{idContactoEmergencia}")
-    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("idContactoEmergencia") int idContactoEmergencia) {
         cS.delete(idContactoEmergencia);
     }
 
     @GetMapping("/busquedascontactos")
-    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ContactoEmergenciaDTO> buscarPorNombre(@RequestParam String nombre) {
         return cS.buscarPorNombrecontacto(nombre).stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, ContactoEmergenciaDTO.class);
         }).collect(Collectors.toList());
     }
+
     @GetMapping("/busquedascontactoscorreo")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public List<ContactoEmergenciaDTO> buscarPorCorreo(@RequestParam String correo) {
         return cS.buscarPorCorreo(correo).stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -73,6 +75,7 @@ public class ContactoEmergenciaController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/riesgoaltasincontactos")
     public List<AlertaSinContactoGravedadAltaDTO> listarUsuariosConDiagnosticoGraveSinContacto() {
         List<AlertaSinContactoGravedadAltaDTO> dtoLista = new ArrayList<>();
