@@ -26,7 +26,7 @@ public class UsuarioController {
     public List<UsuariologinDTO> listar() {
         return uS.listar().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x, UsuarioDTO.class);
+            return modelMapper.map(x, UsuariologinDTO.class);
         }).collect(Collectors.toList());
     }
 
