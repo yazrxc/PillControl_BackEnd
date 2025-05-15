@@ -2,15 +2,19 @@ package pe.edu.upc.demopillcontrol.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
+import pe.edu.upc.demopillcontrol.dtos.NotificacionPorFechaDTO;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionesPorUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Notificacion;
 import pe.edu.upc.demopillcontrol.servicesinplement.NotificacionServiceImplement;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.INotificacionService;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,15 +27,15 @@ public class NotificacionController {
 
     @PostMapping
     public void insertar(@RequestBody NotificacionDTO nDTO) {
-        ModelMapper m=new ModelMapper();
-        Notificacion n=m.map(nDTO,Notificacion.class);
+        ModelMapper m = new ModelMapper();
+        Notificacion n = m.map(nDTO, Notificacion.class);
         nS.insert(n);
     }
 
     @PutMapping
     public void actualizar(@RequestBody NotificacionDTO nDTO) {
-        ModelMapper m=new ModelMapper();
-        Notificacion n=m.map(nDTO,Notificacion.class);
+        ModelMapper m = new ModelMapper();
+        Notificacion n = m.map(nDTO, Notificacion.class);
         nS.update(n);
     }
 
@@ -42,10 +46,16 @@ public class NotificacionController {
 
     @GetMapping()
     public List<NotificacionDTO> listar() {
-        return nS.list().stream().map( x ->{
-            ModelMapper m=new ModelMapper();
-            return m.map(x,NotificacionDTO.class);
+        return nS.list().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, NotificacionDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/notificaciones/estado")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public List<Notificacion> obtenerPorEstado(@RequestParam boolean estado) {
+        return nS.getbyEstado(estado);
     }
 
     @GetMapping("/notificaciones-usuario/{nombre}")
@@ -55,5 +65,12 @@ public class NotificacionController {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, NotificacionesPorUsuarioDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/notificaciones-fecha/{fechaInicioReceta}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public List<NotificacionPorFechaDTO> obtenerNotificacionesPorFecha(
+            @PathVariable("fechaInicioReceta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicioReceta) {
+        return nS.getNotificacionByFecha(Date.valueOf(fechaInicioReceta));
     }
 }
