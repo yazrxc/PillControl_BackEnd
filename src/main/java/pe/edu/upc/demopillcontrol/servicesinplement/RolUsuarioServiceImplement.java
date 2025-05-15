@@ -41,4 +41,9 @@ public class RolUsuarioServiceImplement implements IRolUsuarioService {
     public List<RolUsuario> listarPortipo(String rol) {
         return rR.listarPortipo(rol);
     }
+    @Override
+    public int contarPorRol(String tiporol) {
+        return rR.contarUsuariosPorRol(tiporol);
+    }
+
 }

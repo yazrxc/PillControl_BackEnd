@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface IEspecialistaRepository extends JpaRepository<Especialista, Integer> {
 
-    @Query(value = "select e from Especialista e where e.especialidadEspecialista like %:especialidad", nativeQuery = true)
+    @Query(value = "select * from especialista where especialidad_Especialista like %:especialidad", nativeQuery = true)
     List<Especialista> buscarEspecialidad(@Param("especialidad") String especialidad);
 }

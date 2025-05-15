@@ -11,6 +11,25 @@ import java.util.List;
 
 public interface IDetalleRecetaRepository extends JpaRepository<DetalleReceta,Integer> {
 
+    @Query(value = "SELECT \n" +
+            "    m.nombre AS nombre_medicamento,\n" +
+            "    dr.hora_detalle_receta\n" +
+            "FROM \n" +
+            "    detalle_receta dr\n" +
+            "JOIN \n" +
+            "    medicamento m ON dr.id_medicamento = m.id_medicamento;\n", nativeQuery = true)
+    List<Object[]> getNombreYHoraMedicamento();
+
+    @Query(value = "SELECT \n" +
+            "    m.nombre AS nombre_medicamento,\n" +
+            "    dr.dosis_detalle_receta,\n" +
+            "    dr.intervalo_detalle_receta\n" +
+            "FROM \n" +
+            "    detalle_receta dr\n" +
+            "JOIN \n" +
+            "    medicamento m ON dr.id_medicamento = m.id_medicamento;\n", nativeQuery = true)
+    List<Object[]> getDosisEIntervalobyMedicamento();
+
     // Medicamentos por diagnóstico grave
     @Query(value = "SELECT m.nombre AS nombre_medicamento,\n" +
             " m.tipo AS tipo_medicamento,\n" +
