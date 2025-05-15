@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.demopillcontrol.dtos.RolUsuarioDTO;
 import pe.edu.upc.demopillcontrol.dtos.UsuarioDTO;
 import pe.edu.upc.demopillcontrol.dtos.UsuariologinDTO;
 import pe.edu.upc.demopillcontrol.entities.Usuario;
@@ -28,7 +29,7 @@ public class UsuarioController {
             return modelMapper.map(x, UsuariologinDTO.class);
         }).collect(Collectors.toList());
     }
-    @GetMapping("/{buscarId}")
+    @GetMapping("/{idUsuario}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public UsuarioDTO listarId(@PathVariable ("idUsuario") int idUsuario) {
         ModelMapper m=new ModelMapper();
@@ -62,14 +63,6 @@ public class UsuarioController {
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public List<UsuarioDTO> buscarCorreo(@RequestParam String correo){
         return uS.buscarPorCorreo(correo).stream().map(x ->{
-            ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
-        }).collect(Collectors.toList());
-    }
-    @GetMapping("/busquedasroles")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioDTO> listarRoles(@RequestParam int idUsuario){
-        return uS.listarRoles(idUsuario).stream().map(x ->{
             ModelMapper m = new ModelMapper();
             return m.map(x,UsuarioDTO.class);
         }).collect(Collectors.toList());

@@ -12,7 +12,6 @@ public interface IUsuarioService {
     public void modificar(Usuario u);
     public void eliminar(int idUsuario);
     public List<Usuario> buscarPorCorreo(String correoUsuario);
-    public List<Usuario> listarRoles(int idUsuario);
 
     // Querys
     Double obtenerEdadPromedioPorEspecialista(int idEspecialista);

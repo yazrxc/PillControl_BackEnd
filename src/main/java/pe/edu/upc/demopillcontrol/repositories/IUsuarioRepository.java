@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
-    @Query(value = "select u from Usuario u where u.correoUsuario like %:correo", nativeQuery = true)
+    @Query(value = "select * from usuario where correo_usuario like %:correo", nativeQuery = true)
     List<Usuario> buscarPorCorreo(@Param("correo") String correo);
 
     public Usuario findOneByUsername(String username);
@@ -27,9 +27,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Modifying
     @Query(value = "insert into RolUsuario (tiporol, idUsuario) VALUES (:tiporol, :idUsuario)", nativeQuery = true)
     public void insRol(@Param("tiporol") String authority, @Param("idUsuario") int idUsuario);
-
-    @Query(value="SELECT r FROM RolUsuario r WHERE r.usuario.idusuario = :idUsuario", nativeQuery = true)
-    public List<Usuario> listarRoles(@Param("idUsuario") int idUsuario);
 
     @Query(value = "SELECT AVG(u.edadUsuario) FROM Usuario u WHERE u.idEspecialista = :idEspecialista", nativeQuery = true)
     Double obtenerEdadPromedioPorEspecialista(@Param("idEspecialista") int idEspecialista);

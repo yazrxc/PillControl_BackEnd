@@ -48,11 +48,6 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public List<Usuario> listarRoles(int idUsuario) {
-        return uR.listarRoles(idUsuario);
-    }
-
-    @Override
     public Double obtenerEdadPromedioPorEspecialista(int idEspecialista) {
         return uR.obtenerEdadPromedioPorEspecialista(idEspecialista);
     }
