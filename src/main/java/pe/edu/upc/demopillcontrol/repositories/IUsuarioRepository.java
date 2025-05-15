@@ -28,7 +28,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query(value = "insert into RolUsuario (tiporol, idUsuario) VALUES (:tiporol, :idUsuario)", nativeQuery = true)
     public void insRol(@Param("tiporol") String authority, @Param("idUsuario") int idUsuario);
 
-    @Query(value = "SELECT AVG(u.edadUsuario) FROM Usuario u WHERE u.idEspecialista = :idEspecialista", nativeQuery = true)
+    @Query(value = "SELECT AVG(edad_usuario) FROM usuario WHERE id_especialista= :idEspecialista", nativeQuery = true)
     Double obtenerEdadPromedioPorEspecialista(@Param("idEspecialista") int idEspecialista);
 
 }
