@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.EspecialistaDTO;
-import pe.edu.upc.demopillcontrol.dtos.UsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Especialista;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IEspecialistaService;
 
@@ -22,7 +21,7 @@ public class EspecialistaController {
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<EspecialistaDTO> listar() {
-        return eS.list().stream().map(x->{
+        return eS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, EspecialistaDTO.class);
         }).collect(Collectors.toList());
@@ -30,38 +29,40 @@ public class EspecialistaController {
 
     @GetMapping("/{idEspecialista}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public EspecialistaDTO listarId(@PathVariable ("idEspecialista") int idEspecialista) {
-        ModelMapper m=new ModelMapper();
-        EspecialistaDTO dto=m.map(eS.listarId(idEspecialista),EspecialistaDTO.class);
+    public EspecialistaDTO listarId(@PathVariable("idEspecialista") int idEspecialista) {
+        ModelMapper m = new ModelMapper();
+        EspecialistaDTO dto = m.map(eS.listarId(idEspecialista), EspecialistaDTO.class);
         return dto;
     }
 
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void insertar(@RequestBody EspecialistaDTO eDto){
+    public void insertar(@RequestBody EspecialistaDTO eDto) {
         ModelMapper modelMapper = new ModelMapper();
-        Especialista e = modelMapper.map(eDto,Especialista.class);
+        Especialista e = modelMapper.map(eDto, Especialista.class);
         eS.insert(e);
     }
+
     @PutMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void modificar(@RequestBody EspecialistaDTO eDto){
+    public void modificar(@RequestBody EspecialistaDTO eDto) {
         ModelMapper m = new ModelMapper();
-        Especialista e = m.map(eDto,Especialista.class);
+        Especialista e = m.map(eDto, Especialista.class);
         eS.update(e);
     }
+
     @DeleteMapping("/{idEspecialista}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void eliminar(@PathVariable ("idEspecialista") int idEspecialista){
+    public void eliminar(@PathVariable("idEspecialista") int idEspecialista) {
         eS.delete(idEspecialista);
     }
 
     @GetMapping("/busquedasespecialidad")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<EspecialistaDTO> buscarEspecialidad(@RequestParam String especialidad){
-        return eS.buscarEspecialidad(especialidad).stream().map(x ->{
+    public List<EspecialistaDTO> buscarEspecialidad(@RequestParam String especialidad) {
+        return eS.buscarEspecialidad(especialidad).stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x,EspecialistaDTO.class);
+            return m.map(x, EspecialistaDTO.class);
         }).collect(Collectors.toList());
     }
 
