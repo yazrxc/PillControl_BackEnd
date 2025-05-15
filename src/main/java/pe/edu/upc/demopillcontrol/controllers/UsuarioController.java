@@ -22,17 +22,19 @@ public class UsuarioController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioDTO> listar() {
-        return uS.listar().stream().map(x->{
+
+    public List<UsuariologinDTO> listar() {
+        return uS.listar().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x, UsuarioDTO.class);
+            return modelMapper.map(x, UsuariologinDTO.class);
         }).collect(Collectors.toList());
     }
-    @GetMapping("/{buscarId}")
+
+    @GetMapping("/{idUsuario}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public UsuarioDTO listarId(@PathVariable ("idUsuario") int idUsuario) {
-        ModelMapper m=new ModelMapper();
-        UsuarioDTO dto=m.map(uS.listarId(idUsuario),UsuarioDTO.class);
+    public UsuarioDTO listarId(@PathVariable("idUsuario") int idUsuario) {
+        ModelMapper m = new ModelMapper();
+        UsuarioDTO dto = m.map(uS.listarId(idUsuario), UsuarioDTO.class);
         return dto;
     }
 
@@ -40,7 +42,7 @@ public class UsuarioController {
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void insertar(@RequestBody UsuariologinDTO uDto){
         ModelMapper modelMapper = new ModelMapper();
-        Usuario u = modelMapper.map(uDto,Usuario.class);
+        Usuario u = modelMapper.map(uDto, Usuario.class);
         uS.insertar(u);
     }
 
@@ -48,32 +50,25 @@ public class UsuarioController {
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public void modificar(@RequestBody UsuariologinDTO uDto){
         ModelMapper m = new ModelMapper();
-        Usuario u = m.map(uDto,Usuario.class);
+        Usuario u = m.map(uDto, Usuario.class);
         uS.modificar(u);
     }
 
     @DeleteMapping("/{idUsuario}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public void eliminar(@PathVariable ("idUsuario") int idUsuario){
+    public void eliminar(@PathVariable("idUsuario") int idUsuario) {
         uS.eliminar(idUsuario);
     }
 
     @GetMapping("/busquedascorreo")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public List<UsuarioDTO> buscarCorreo(@RequestParam String correo){
-        return uS.buscarPorCorreo(correo).stream().map(x ->{
+    public List<UsuarioDTO> buscarCorreo(@RequestParam String correo) {
+        return uS.buscarPorCorreo(correo).stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
+            return m.map(x, UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
-    @GetMapping("/busquedasroles")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public List<UsuarioDTO> listarRoles(@RequestParam int idUsuario){
-        return uS.listarRoles(idUsuario).stream().map(x ->{
-            ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
-        }).collect(Collectors.toList());
-    }
+
     //Query
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edadpromedioUsuarioEspecialista")

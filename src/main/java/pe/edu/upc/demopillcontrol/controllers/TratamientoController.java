@@ -21,30 +21,31 @@ public class TratamientoController {
 
     @GetMapping
     public List<TratamientoDTO> listar() {
-        return tS.list().stream().map( x ->{
-            ModelMapper m=new ModelMapper();
-            return m.map(x,TratamientoDTO.class);
+        return tS.list().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, TratamientoDTO.class);
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/{buscarId}")
+    @GetMapping("/{idTratamiento}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public TratamientoDTO listarId(@PathVariable ("idTratamiento") int idTratamiento) {
-        ModelMapper m=new ModelMapper();
-        TratamientoDTO dto=m.map(tS.listarId(idTratamiento),TratamientoDTO.class);
+    public TratamientoDTO listarId(@PathVariable("idTratamiento") int idTratamiento) {
+        ModelMapper m = new ModelMapper();
+        TratamientoDTO dto = m.map(tS.listarId(idTratamiento), TratamientoDTO.class);
         return dto;
     }
+
     @PostMapping
     public void insertar(@RequestBody TratamientoDTO tDTO) {
-        ModelMapper m=new ModelMapper();
-        Tratamiento t=m.map(tDTO,Tratamiento.class);
+        ModelMapper m = new ModelMapper();
+        Tratamiento t = m.map(tDTO, Tratamiento.class);
         tS.insert(t);
     }
 
     @PutMapping
     public void actualizar(@RequestBody TratamientoDTO tDTO) {
-        ModelMapper m=new ModelMapper();
-        Tratamiento t=m.map(tDTO,Tratamiento.class);
+        ModelMapper m = new ModelMapper();
+        Tratamiento t = m.map(tDTO, Tratamiento.class);
         tS.update(t);
     }
 
@@ -56,17 +57,17 @@ public class TratamientoController {
 
     @GetMapping("/tratamientoporestado")
     public List<TratamientoDTO> listarPorEstado(@RequestParam String estado) {
-        return tS.listarPorEstado(estado).stream().map(x->{
-            ModelMapper m=new ModelMapper();
-            return m.map(x,TratamientoDTO.class);
+        return tS.listarPorEstado(estado).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, TratamientoDTO.class);
         }).collect(Collectors.toList());
     }
-
+    //Query
     @GetMapping("/tratamientosusuario")
     public List<TratamientoDTO> listarPorUsuario(@RequestParam int idUsuario) {
-        return  tS.listarPorUsuario(idUsuario).stream().map(x->{
-            ModelMapper m=new ModelMapper();
-            return m.map(x,TratamientoDTO.class);
+        return tS.listarPorUsuario(idUsuario).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, TratamientoDTO.class);
         }).collect(Collectors.toList());
     }
 

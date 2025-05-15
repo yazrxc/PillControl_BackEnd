@@ -16,4 +16,8 @@ public interface IRolUsuarioRepository extends JpaRepository<RolUsuario, Integer
     @Query(value = "SELECT r FROM RolUsuario r WHERE r.tiporol LIKE %:rol%" )
     public List<RolUsuario> listarPortipo(@Param("rol") String rol);
 
+    // conteo de usuarios según el tipo de rol
+    @Query(value = "SELECT COUNT(*) FROM rol_usuario WHERE tiporol ILIKE CONCAT('%', :tiporol, '%')", nativeQuery = true)
+    int contarUsuariosPorRol(@Param("tiporol") String tiporol);
+
 }
