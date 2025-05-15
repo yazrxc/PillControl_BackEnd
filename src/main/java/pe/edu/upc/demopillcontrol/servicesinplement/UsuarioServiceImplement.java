@@ -8,6 +8,7 @@ import pe.edu.upc.demopillcontrol.repositories.IUsuarioRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
+
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired

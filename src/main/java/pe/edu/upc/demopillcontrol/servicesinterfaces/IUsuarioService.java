@@ -7,10 +7,15 @@ import java.util.List;
 
 public interface IUsuarioService {
     public List<Usuario> listar();
+
     public Usuario listarId(int idUsuario);
+
     public void insertar(Usuario u);
+
     public void modificar(Usuario u);
+
     public void eliminar(int idUsuario);
+
     public List<Usuario> buscarPorCorreo(String correoUsuario);
 
     // Querys

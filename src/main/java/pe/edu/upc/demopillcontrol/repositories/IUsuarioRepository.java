@@ -32,3 +32,4 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     Double obtenerEdadPromedioPorEspecialista(@Param("idEspecialista") int idEspecialista);
 
 }
+
