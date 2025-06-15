@@ -34,6 +34,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public void modificar(Usuario u) {
+        Usuario usuario = uR.findById(u.getIdUsuario()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        u.setRoles(usuario.getRoles());
         u.setPassword(passwordEncoder.encode(u.getPassword()));
         uR.save(u);
     }
