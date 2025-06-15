@@ -70,13 +70,4 @@ public class TratamientoController {
             return m.map(x, TratamientoDTO.class);
         }).collect(Collectors.toList());
     }
-
-    // QUERY N1
-    @GetMapping("/tratamientosactivosespecialista")
-    public List<TratamientoDTO> listarActivosPorEspecialista(@RequestParam int idEspecialista) {
-        return tS.listarActivosPorEspecialista(idEspecialista).stream().map(t -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(t, TratamientoDTO.class);
-        }).collect(Collectors.toList());
-    }
 }
