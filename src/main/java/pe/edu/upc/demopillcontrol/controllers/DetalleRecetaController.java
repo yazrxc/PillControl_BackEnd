@@ -6,10 +6,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaDTO;
 import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
+import pe.edu.upc.demopillcontrol.dtos.MedicamentoDTO;
 import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IDetalleRecetaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,10 +64,16 @@ public class DetalleRecetaController {
     @GetMapping("/busquedas-medicamentos-graves/{id_usuario}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public List<MedicamentosByGravedadDTO> medicamentosByGravedad(@PathVariable("id_usuario") int id_usuario) {
-        return drS.getMedicamentosByGravedadDiagnostico(id_usuario).stream().map(x -> {
-            ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x, MedicamentosByGravedadDTO.class);
-        }).collect(Collectors.toList());
+        List<MedicamentosByGravedadDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = drS.getMedicamentosByGravedadDiagnostico(id_usuario);
+        for (String[] columna : filaLista) {
+            MedicamentosByGravedadDTO dto = new MedicamentosByGravedadDTO();
+            dto.setNombreMedicamento(columna[0]);
+            dto.setTipoMedicamento(columna[1]);
+            dto.setNombreDiagnostico(columna[2]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 
     @GetMapping("/detalle-receta/usuario")

@@ -4,12 +4,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
+import pe.edu.upc.demopillcontrol.dtos.NotificacionPorFechaDTO;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionesPorUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Notificacion;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface INotificacionRepository extends JpaRepository<Notificacion,Integer> {
+
+    @Query(value ="SELECT *\n" +
+            "FROM notificacion\n" +
+            "WHERE estado_notificacion = :estado;\n", nativeQuery = true)
+    List<Notificacion> getByEstado(@Param("estado") boolean estado);
 
     @Query(value = "SELECT \n" +
             "    u.nombre,\n" +
@@ -24,4 +31,15 @@ public interface INotificacionRepository extends JpaRepository<Notificacion,Inte
             "WHERE \n" +
             "    u.nombre ILIKE :nombre;", nativeQuery = true)
     public List<NotificacionesPorUsuarioDTO> getNotificacionByNombre(@Param("nombre") String nombre);
+
+    @Query(value = "SELECT \n" +
+            "    n.id_notificacion,\n" +
+            "    n.estado_notificacion,\n" +
+            "    n.mensaje_notificacion,\n" +
+            "    r.fecha_inicio_receta\n" +
+            "FROM notificacion n\n" +
+            "JOIN detalle_receta dr ON n.id_detalle_receta = dr.id_detalle_receta\n" +
+            "JOIN receta r ON dr.id_receta = r.id_receta\n" +
+            "WHERE r.fecha_inicio_receta = :fechaInicio", nativeQuery = true)
+    List<Object[]> getNotificacionByFecha(@Param("fechaInicio") Date fechaInicio);
 }
