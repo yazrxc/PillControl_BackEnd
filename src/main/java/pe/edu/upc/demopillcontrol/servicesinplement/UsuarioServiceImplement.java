@@ -8,6 +8,7 @@ import pe.edu.upc.demopillcontrol.repositories.IUsuarioRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
+
 @Service
 public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
@@ -33,6 +34,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public void modificar(Usuario u) {
+        Usuario usuario = uR.findById(u.getIdUsuario()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        u.setRoles(usuario.getRoles());
         u.setPassword(passwordEncoder.encode(u.getPassword()));
         uR.save(u);
     }
@@ -45,11 +48,6 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Override
     public List<Usuario> buscarPorCorreo(String correoUsuario) {
         return uR.buscarPorCorreo(correoUsuario);
-    }
-
-    @Override
-    public List<Usuario> listarRoles(int idUsuario) {
-        return uR.listarRoles(idUsuario);
     }
 
     @Override
