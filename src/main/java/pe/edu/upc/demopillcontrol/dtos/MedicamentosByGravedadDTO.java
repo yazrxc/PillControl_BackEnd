@@ -5,24 +5,6 @@ public class MedicamentosByGravedadDTO {
     private String nombreMedicamento;
     private String tipoMedicamento;
     private double dosis;
-    private int idMedicamento;
-
-    public MedicamentosByGravedadDTO(String nombreMedicamento, String tipoMedicamento, double dosis, int idMedicamento, String nombreDiagnostico) {
-        this.nombreMedicamento = nombreMedicamento;
-        this.tipoMedicamento = tipoMedicamento;
-        this.dosis = dosis;
-        this.idMedicamento = idMedicamento;
-        this.nombreDiagnostico = nombreDiagnostico;
-    }
-
-    public int getIdMedicamento() {
-        return idMedicamento;
-    }
-
-    public void setIdMedicamento(int idMedicamento) {
-        this.idMedicamento = idMedicamento;
-    }
-
     private String nombreDiagnostico;
 
     public String getNombreMedicamento() {

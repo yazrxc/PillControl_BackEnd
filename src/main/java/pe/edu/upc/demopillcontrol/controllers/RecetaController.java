@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.demopillcontrol.dtos.MedicamentoDTO;
 import pe.edu.upc.demopillcontrol.dtos.RecetaDTO;
 import pe.edu.upc.demopillcontrol.dtos.RecetaVencidaDTO;
 import pe.edu.upc.demopillcontrol.entities.Receta;
@@ -45,10 +44,8 @@ public class RecetaController {
 
     @GetMapping("/{idReceta}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public RecetaDTO findByID(@PathVariable("idReceta") int idReceta){
-        ModelMapper modelMapper = new ModelMapper();
-        RecetaDTO dto = modelMapper.map(rS.findById(idReceta), RecetaDTO.class);
-        return dto;
+    public void findByID(@PathVariable("idReceta") int idReceta){
+        rS.findById(idReceta);
     }
 
     @GetMapping()
@@ -79,11 +76,11 @@ public class RecetaController {
     }
 
     @GetMapping("/busquedas-recetas-vencidas-por-usuario/{id_usuario}")
-    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN', 'DOCTOR')")
-    public List<RecetaDTO> findRecetasVencidasByUsuario(@PathVariable("id_usuario") int id_usuario){
+    @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
+    public List<RecetaVencidaDTO> findRecetasVencidasByUsuario(@PathVariable("id_usuario") int id_usuario){
         return rS.findRecetaVencidaByUsuarioId(id_usuario).stream().map( x ->{
             ModelMapper m=new ModelMapper();
-            return m.map(x,RecetaDTO.class);
+            return m.map(x,RecetaVencidaDTO.class);
         }).collect(Collectors.toList());
     }
 }

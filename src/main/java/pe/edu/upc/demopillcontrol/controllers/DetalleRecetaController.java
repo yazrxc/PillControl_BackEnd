@@ -6,7 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaDTO;
 import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
-import pe.edu.upc.demopillcontrol.dtos.MedicamentoDTO;
 import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IDetalleRecetaService;
@@ -62,7 +61,7 @@ public class DetalleRecetaController {
 
     @GetMapping("/busquedas-medicamentos-graves/{id_usuario}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public List<MedicamentosByGravedadDTO> medicamentosGraves(@PathVariable("id_usuario") int id_usuario) {
+    public List<MedicamentosByGravedadDTO> listarPorPresentacion(@PathVariable("id_usuario") int id_usuario) {
         return drS.getMedicamentosByGravedadDiagnostico(id_usuario).stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, MedicamentosByGravedadDTO.class);

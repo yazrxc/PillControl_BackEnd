@@ -6,9 +6,6 @@ public class RecetaVencidaDTO {
     private int idReceta;
     private LocalDate fechaEmision;
 
-    public RecetaVencidaDTO() {
-    }
-
     public int getIdReceta() {
         return idReceta;
     }
