@@ -41,7 +41,7 @@ public interface IDetalleRecetaRepository extends JpaRepository<DetalleReceta,In
             " JOIN medicamento m ON dr.id_medicamento = m.id_medicamento\n" +
             " WHERE d.gravedad = 'Alta'\n" +
             " AND r.id_usuario = :id_usuario", nativeQuery = true)
-    public List<Medicamento> getMedicamentosByGravedadDiagnostico(@Param("id_usuario") int id_usuario);
+    public List<String[]> getMedicamentosByGravedadDiagnostico(@Param("id_usuario") int id_usuario);
 
     //Detalles de las recetas ingresadas según el usuario
     @Query(value = "SELECT \n" +

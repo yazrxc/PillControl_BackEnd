@@ -65,9 +65,10 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
     }
 
     @Override
-    public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario) {
+    public List<String[]> getMedicamentosByGravedadDiagnostico(int id_usuario) {
         return drR.getMedicamentosByGravedadDiagnostico(id_usuario);
     }
+
 
     @Override
     public List<DetalleRecetaSegunUsuarioDTO> getDetalleRecetaByUsuario(int idUsuario, String nombre) {
