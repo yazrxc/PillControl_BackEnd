@@ -44,8 +44,10 @@ public class RecetaController {
 
     @GetMapping("/{idReceta}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public void findByID(@PathVariable("idReceta") int idReceta){
-        rS.findById(idReceta);
+    public RecetaDTO findByID(@PathVariable("idReceta") int idReceta){
+        ModelMapper modelMapper = new ModelMapper();
+        RecetaDTO dto = modelMapper.map(rS.findById(idReceta), RecetaDTO.class);
+        return dto;
     }
 
     @GetMapping()
@@ -77,10 +79,10 @@ public class RecetaController {
 
     @GetMapping("/busquedas-recetas-vencidas-por-usuario/{id_usuario}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public List<RecetaVencidaDTO> findRecetasVencidasByUsuario(@PathVariable("id_usuario") int id_usuario){
+    public List<RecetaDTO> findRecetasVencidasByUsuario(@PathVariable("id_usuario") int id_usuario){
         return rS.findRecetaVencidaByUsuarioId(id_usuario).stream().map( x ->{
             ModelMapper m=new ModelMapper();
-            return m.map(x,RecetaVencidaDTO.class);
+            return m.map(x,RecetaDTO.class);
         }).collect(Collectors.toList());
     }
 }

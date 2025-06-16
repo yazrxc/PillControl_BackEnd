@@ -23,10 +23,10 @@ public class UsuarioController {
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
 
-    public List<UsuariologinDTO> listar() {
+    public List<UsuarioDTO> listar() {
         return uS.listar().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x, UsuariologinDTO.class);
+            return modelMapper.map(x, UsuarioDTO.class);
         }).collect(Collectors.toList());
     }
 

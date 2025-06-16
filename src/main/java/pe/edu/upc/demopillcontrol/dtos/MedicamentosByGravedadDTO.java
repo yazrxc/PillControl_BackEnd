@@ -6,9 +6,18 @@ public class MedicamentosByGravedadDTO {
     private String tipoMedicamento;
     private double dosis;
     private String nombreDiagnostico;
+    private int idMedicamento;
 
     public String getNombreMedicamento() {
         return nombreMedicamento;
+    }
+
+    public int getIdMedicamento() {
+        return idMedicamento;
+    }
+
+    public void setIdMedicamento(int idMedicamento) {
+        this.idMedicamento = idMedicamento;
     }
 
     public void setNombreMedicamento(String nombreMedicamento) {
