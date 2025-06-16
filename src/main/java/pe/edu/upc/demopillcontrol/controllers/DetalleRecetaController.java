@@ -61,7 +61,7 @@ public class DetalleRecetaController {
 
     @GetMapping("/busquedas-medicamentos-graves/{id_usuario}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public List<MedicamentosByGravedadDTO> listarPorPresentacion(@PathVariable("id_usuario") int id_usuario) {
+    public List<MedicamentosByGravedadDTO> medicamentosByGravedad(@PathVariable("id_usuario") int id_usuario) {
         return drS.getMedicamentosByGravedadDiagnostico(id_usuario).stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, MedicamentosByGravedadDTO.class);
