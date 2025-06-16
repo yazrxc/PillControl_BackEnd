@@ -12,16 +12,16 @@ import java.util.List;
 public interface IDetalleRecetaRepository extends JpaRepository<DetalleReceta,Integer> {
 
     // Medicamentos por diagnóstico grave
-    @Query(value = "SELECT m.nombre AS nombre_medicamento,\n" +
-            " m.tipo AS tipo_medicamento,\n" +
-            " dr.dosis AS dosis,\n" +
-            " d.descripcion AS diagnostico\n" +
+    @Query(value = "SELECT m.nombre AS nombreMedicamento,\n" +
+            " m.tipo_medicamento AS tipoMedicamento,\n" +
+            " m.dosis AS dosis,\n" +
+            " d.descripcion AS nombreDiagnostico\n" +
             " FROM detalle_receta dr\n" +
             " JOIN receta r ON dr.id_receta = r.id_receta\n" +
             " JOIN diagnostico d ON r.id_diagnostico = d.id_diagnostico\n" +
             " JOIN medicamento m ON dr.id_medicamento = m.id_medicamento\n" +
             " WHERE d.gravedad = 'Alta'\n" +
-            " AND r.id_usuario = :idUsuario;", nativeQuery = true)
+            " AND r.id_usuario = :id_usuario", nativeQuery = true)
     public List<Medicamento> getMedicamentosByGravedadDiagnostico(@Param("id_usuario") int id_usuario);
 
     //Detalles de las recetas ingresadas según el usuario
