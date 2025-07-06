@@ -22,8 +22,8 @@ public class MedicamentoController {
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
     public List<MedicamentoDTO> listarMedicamentos() {
         return mS.listarMedicamentos().stream().map( x->{
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(x,MedicamentoDTO.class);
+            ModelMapper modelMapper = new ModelMapper();
+            return modelMapper.map(x,MedicamentoDTO.class);
         }).collect(Collectors.toList());
     }
 
@@ -74,5 +74,4 @@ public class MedicamentoController {
             return modelMapper.map(x,MedicamentoDTO.class);
         }).collect(Collectors.toList());
     }
-
 }

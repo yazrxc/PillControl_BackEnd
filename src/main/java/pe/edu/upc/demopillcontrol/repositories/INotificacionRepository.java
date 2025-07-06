@@ -1,6 +1,7 @@
 package pe.edu.upc.demopillcontrol.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
@@ -42,4 +43,8 @@ public interface INotificacionRepository extends JpaRepository<Notificacion,Inte
             "JOIN receta r ON dr.id_receta = r.id_receta\n" +
             "WHERE r.fecha_inicio_receta = :fechaInicio", nativeQuery = true)
     List<Object[]> getNotificacionByFecha(@Param("fechaInicio") Date fechaInicio);
+
+    @Modifying
+    @Query("DELETE FROM Notificacion n WHERE n.detallereceta.idDetalleReceta = :idDetalleReceta")
+    void deleteByDetalleRecetaId(@Param("idDetalleReceta") Integer idDetalleReceta);
 }

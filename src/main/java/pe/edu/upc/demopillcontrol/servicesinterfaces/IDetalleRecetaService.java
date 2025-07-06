@@ -19,6 +19,6 @@ public interface IDetalleRecetaService {
 
     public List<HoraIngerirMedicamentoDTO> getNombreYHoraMedicamento();
     public List<DosisIntervaloSegunMedicamentoDTO> getDosisEIntervalobyMedicamento();
-    public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario);
+    public List<String[]> getMedicamentosByGravedadDiagnostico(int id_usuario);
     public List<DetalleRecetaSegunUsuarioDTO> getDetalleRecetaByUsuario(int idUsuario, String nombre);
 }

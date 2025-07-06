@@ -4,7 +4,6 @@ public class MedicamentosByGravedadDTO {
 
     private String nombreMedicamento;
     private String tipoMedicamento;
-    private double dosis;
     private String nombreDiagnostico;
 
     public String getNombreMedicamento() {
@@ -21,14 +20,6 @@ public class MedicamentosByGravedadDTO {
 
     public void setTipoMedicamento(String tipoMedicamento) {
         this.tipoMedicamento = tipoMedicamento;
-    }
-
-    public double getDosis() {
-        return dosis;
-    }
-
-    public void setDosis(double dosis) {
-        this.dosis = dosis;
     }
 
     public String getNombreDiagnostico() {

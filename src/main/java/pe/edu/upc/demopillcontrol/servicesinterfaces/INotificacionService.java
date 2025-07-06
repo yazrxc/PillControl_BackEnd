@@ -9,11 +9,12 @@ import java.sql.Date;
 import java.util.List;
 
 public interface INotificacionService {
-    public List<Notificacion> list();
+    public List<NotificacionDTO> list();
     public void insert(Notificacion n);
-    //public Notificacion listId(int idNotificacion);
+    public Notificacion listarPorId(int idNotificacion);
     public void update(Notificacion n);
     public void delete(int idNotificacion);
+    void deleteByDetalleRecetaId(Integer idDetalleReceta);
 
     public List<Notificacion> getbyEstado(Boolean estado);
     public List<NotificacionesPorUsuarioDTO> getNotificacionByNombre(String nombre);

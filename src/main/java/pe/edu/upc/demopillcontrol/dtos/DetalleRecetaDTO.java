@@ -3,17 +3,33 @@ package pe.edu.upc.demopillcontrol.dtos;
 import pe.edu.upc.demopillcontrol.entities.Medicamento;
 import pe.edu.upc.demopillcontrol.entities.Receta;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class DetalleRecetaDTO {
 
     private int idDetalleReceta;
     private int dosisDetalleReceta;
-    private LocalDateTime horaDetalleReceta;
+    private LocalTime horaDetalleReceta;
     private int intervaloDetalleReceta;
     private int frecuenciaDetalleReceta;
-    private Receta receta;
-    private Medicamento medicamento;
+    private RecetaDTO receta;
+    private MedicamentoDTO medicamento;
+
+    public RecetaDTO getReceta() {
+        return receta;
+    }
+
+    public void setReceta(RecetaDTO receta) {
+        this.receta = receta;
+    }
+
+    public MedicamentoDTO getMedicamento() {
+        return medicamento;
+    }
+
+    public void setMedicamento(MedicamentoDTO medicamento) {
+        this.medicamento = medicamento;
+    }
 
     public int getIdDetalleReceta() {
         return idDetalleReceta;
@@ -31,11 +47,11 @@ public class DetalleRecetaDTO {
         this.dosisDetalleReceta = dosisDetalleReceta;
     }
 
-    public LocalDateTime getHoraDetalleReceta() {
+    public LocalTime getHoraDetalleReceta() {
         return horaDetalleReceta;
     }
 
-    public void setHoraDetalleReceta(LocalDateTime horaDetalleReceta) {
+    public void setHoraDetalleReceta(LocalTime horaDetalleReceta) {
         this.horaDetalleReceta = horaDetalleReceta;
     }
 
@@ -55,19 +71,4 @@ public class DetalleRecetaDTO {
         this.frecuenciaDetalleReceta = frecuenciaDetalleReceta;
     }
 
-    public Receta getReceta() {
-        return receta;
-    }
-
-    public void setReceta(Receta receta) {
-        this.receta = receta;
-    }
-
-    public Medicamento getMedicamento() {
-        return medicamento;
-    }
-
-    public void setMedicamento(Medicamento medicamento) {
-        this.medicamento = medicamento;
-    }
 }

@@ -6,8 +6,12 @@ public class NotificacionDTO {
 
     private int idNotificacion;
     private boolean estadoNotificacion;
-    private String mensajeNotificaion;
-    private DetalleReceta detallereceta;
+    private String mensajeNotificacion;
+    private DetalleRecetaDTO detallereceta;
+    private String nombreUsuario;
+    private int idDetalleReceta;
+    private String nombreMedicamento;
+    private DetalleRecetaDTO detalleReceta;
 
     public int getIdNotificacion() {
         return idNotificacion;
@@ -17,7 +21,7 @@ public class NotificacionDTO {
         this.idNotificacion = idNotificacion;
     }
 
-    public boolean isEstadoNotificacion() {
+    public boolean getEstadoNotificacion() {
         return estadoNotificacion;
     }
 
@@ -25,19 +29,51 @@ public class NotificacionDTO {
         this.estadoNotificacion = estadoNotificacion;
     }
 
-    public String getMensajeNotificaion() {
-        return mensajeNotificaion;
+    public String getMensajeNotificacion() {
+        return mensajeNotificacion;
     }
 
-    public void setMensajeNotificaion(String mensajeNotificaion) {
-        this.mensajeNotificaion = mensajeNotificaion;
+    public void setMensajeNotificacion(String mensajeNotificacion) {
+        this.mensajeNotificacion = mensajeNotificacion;
     }
 
-    public DetalleReceta getDetallereceta() {
+    public DetalleRecetaDTO getDetallereceta() {
         return detallereceta;
     }
 
-    public void setDetallereceta(DetalleReceta detallereceta) {
+    public void setDetallereceta(DetalleRecetaDTO detallereceta) {
         this.detallereceta = detallereceta;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public int getIdDetalleReceta() {
+        return idDetalleReceta;
+    }
+
+    public void setIdDetalleReceta(int idDetalleReceta) {
+        this.idDetalleReceta = idDetalleReceta;
+    }
+
+    public String getNombreMedicamento() {
+        return nombreMedicamento;
+    }
+
+    public void setNombreMedicamento(String nombreMedicamento) {
+        this.nombreMedicamento = nombreMedicamento;
+    }
+
+    public DetalleRecetaDTO getDetalleReceta() {
+        return detalleReceta;
+    }
+
+    public void setDetalleReceta(DetalleRecetaDTO detalleReceta) {
+        this.detalleReceta = detalleReceta;
     }
 }

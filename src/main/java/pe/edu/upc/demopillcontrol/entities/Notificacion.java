@@ -35,7 +35,7 @@ public class Notificacion {
         this.idNotificacion = idNotificacion;
     }
 
-    public boolean isEstadoNotificacion() {
+    public boolean getEstadoNotificacion() {
         return estadoNotificacion;
     }
 
@@ -43,11 +43,11 @@ public class Notificacion {
         this.estadoNotificacion = estadoNotificacion;
     }
 
-    public String getMensajeNotificaion() {
+    public String getMensajeNotificacion() {
         return mensajeNotificacion;
     }
 
-    public void setMensajeNotificaion(String mensajeNotificaion) {
+    public void setMensajeNotificacion(String mensajeNotificacion) {
         this.mensajeNotificacion = mensajeNotificacion;
     }
 

@@ -41,11 +41,11 @@ public class DiagnosticoController {
         dS.eliminar(idDiagnostico);
     }
 
-    @GetMapping("/{idDiagnostico}")
+    @GetMapping("/{id_diagnostico}")
     @PreAuthorize("hasAnyAuthority('PACIENTE', 'ADMIN')")
-    public DiagnosticoDTO listarporID(@PathVariable("idDiagnostico") int idDiagnostico){
+    public DiagnosticoDTO listarporID(@PathVariable("id_diagnostico") int id_diagnostico){
         ModelMapper m = new ModelMapper();
-        DiagnosticoDTO dto =m.map(dS.listarporID(idDiagnostico),DiagnosticoDTO.class);
+        DiagnosticoDTO dto =m.map(dS.listarporID(id_diagnostico),DiagnosticoDTO.class);
         return dto;
     }
 
@@ -58,8 +58,7 @@ public class DiagnosticoController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/{findbyidDiagnostico}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/busquedas")
     public List<DiagnosticoDTO> findDiagnosticosByUsuarioId(@RequestParam int idUsuario) {
         return dS.findDiagnosticosByUsuarioId(idUsuario).stream().map( x ->{
             ModelMapper m=new ModelMapper();
@@ -75,5 +74,5 @@ public class DiagnosticoController {
             return m.map(x,DiagnosticoDTO.class);
         }).collect(Collectors.toList());
     }
-
 }
+

@@ -1,5 +1,6 @@
 package pe.edu.upc.demopillcontrol.servicesinplement;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demopillcontrol.dtos.DetalleRecetaSegunUsuarioDTO;
@@ -9,6 +10,7 @@ import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.entities.Medicamento;
 import pe.edu.upc.demopillcontrol.repositories.IDetalleRecetaRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.IDetalleRecetaService;
+import pe.edu.upc.demopillcontrol.servicesinterfaces.INotificacionService;
 
 import java.sql.Time;
 import java.util.List;
@@ -19,6 +21,8 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
 
     @Autowired
     private IDetalleRecetaRepository drR;
+    @Autowired
+    private INotificacionService nS;
 
     @Override
     public void insert(DetalleReceta dr) {
@@ -35,8 +39,10 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
         drR.save(dr);
     }
     @Override
-    public void delete(int idDetalleReceta) {
-        drR.deleteById(idDetalleReceta);
+    @Transactional
+    public void delete(int id) {
+        nS.deleteByDetalleRecetaId(id); // Línea crítica
+        drR.deleteById(id);
     }
 
     @Override
@@ -65,7 +71,7 @@ public class DetalleRecetaServiceImplement implements IDetalleRecetaService {
     }
 
     @Override
-    public List<Medicamento> getMedicamentosByGravedadDiagnostico(int id_usuario) {
+    public List<String[]> getMedicamentosByGravedadDiagnostico(int id_usuario) {
         return drR.getMedicamentosByGravedadDiagnostico(id_usuario);
     }
 
