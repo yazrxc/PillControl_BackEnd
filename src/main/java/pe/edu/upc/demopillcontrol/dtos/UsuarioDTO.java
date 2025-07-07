@@ -10,6 +10,7 @@ import java.util.List;
 public class UsuarioDTO {
     private int idUsuario;
     private String nombre;
+    private String username;
     private int edadUsuario;
     private String correoUsuario;
     private String generoUsuario;
@@ -32,6 +33,14 @@ public class UsuarioDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getEdadUsuario() {
