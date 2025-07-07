@@ -47,6 +47,13 @@ public class MedicamentoFarmaciaController {
         }).collect(Collectors.toList());
     }
 
+    @GetMapping("/{idmedicamentoFarmacia}")
+    public MedicamentoFarmaciaDTO listarPorId(@PathVariable("idmedicamentoFarmacia") int idmedicamentoFarmacia) {
+        ModelMapper m = new ModelMapper();
+        MedicamentoFarmacia medicamentoFarmacia = mfS.listId(idmedicamentoFarmacia);
+        return m.map(medicamentoFarmacia, MedicamentoFarmaciaDTO.class);
+    }
+
     //Querys
     @GetMapping("/cantidad-tipo-venta")
     public List<QueryMedicamentoPorTipoVentaDTO> obtenerCantidadPorTipoVenta (){
@@ -54,12 +61,12 @@ public class MedicamentoFarmaciaController {
     }
 
     @GetMapping("/medicamento-farmacia")
-    public List<QueryFarmaciaMedicamentoDTO> obtenerMedicamentoFarmacia (){
-        return  mfS.obtenerMedicamentoFarmacia();
+    public List<QueryFarmaciaMedicamentoDTO> obtenerMedicamentosPorFarmacia (){
+        return  mfS.obtenerMedicamentosPorFarmacia();
     }
 
     @GetMapping("/economico")
-    public List<QueryFarmaciaStockEconomicoDTO> obtenerFarmaciasConStockEconomico (Long minCantidad, Double maxPrecio){
+    public List<QueryFarmaciaStockEconomicoDTO> obtenerFarmaciasConStockEconomico (@RequestParam Long minCantidad, @RequestParam Double maxPrecio){
         return  mfS.obtenerFarmaciasConStockEconomico(minCantidad,maxPrecio);
     }
 }

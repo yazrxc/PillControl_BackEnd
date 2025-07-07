@@ -35,12 +35,17 @@ public class MedicamentoFarmaciaServiceImplement implements IMedicamentoFarmacia
     }
 
     @Override
+    public MedicamentoFarmacia listId(int idmedicamentoFarmacia) {
+        return mfR.findById(idmedicamentoFarmacia).orElse(new MedicamentoFarmacia());
+    }
+
+    @Override
     public List<QueryMedicamentoPorTipoVentaDTO> obtenerCantidadPorTipoVenta() {
         return mfR.obtenerCantidadPorTipoVenta();
     }
 
     @Override
-    public List<QueryFarmaciaMedicamentoDTO> obtenerMedicamentoFarmacia() {
+    public List<QueryFarmaciaMedicamentoDTO> obtenerMedicamentosPorFarmacia() {
         return mfR.obtenerMedicamentosPorFarmacia();
     }
 
