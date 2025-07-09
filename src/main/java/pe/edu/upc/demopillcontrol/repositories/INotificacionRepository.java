@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
-import pe.edu.upc.demopillcontrol.dtos.NotificacionPorFechaDTO;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionesPorUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.Notificacion;
 
@@ -13,11 +11,6 @@ import java.sql.Date;
 import java.util.List;
 
 public interface INotificacionRepository extends JpaRepository<Notificacion,Integer> {
-
-    @Query(value ="SELECT *\n" +
-            "FROM notificacion\n" +
-            "WHERE estado_notificacion = :estado;\n", nativeQuery = true)
-    List<Notificacion> getByEstado(@Param("estado") boolean estado);
 
     @Query(value = "SELECT \n" +
             "    u.nombre,\n" +
@@ -47,4 +40,6 @@ public interface INotificacionRepository extends JpaRepository<Notificacion,Inte
     @Modifying
     @Query("DELETE FROM Notificacion n WHERE n.detallereceta.idDetalleReceta = :idDetalleReceta")
     void deleteByDetalleRecetaId(@Param("idDetalleReceta") Integer idDetalleReceta);
+
+    List<Notificacion> findByEstadoNotificacion(boolean estadoNotificacion);
 }

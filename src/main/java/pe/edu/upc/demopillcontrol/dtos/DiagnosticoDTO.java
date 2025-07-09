@@ -10,7 +10,7 @@ public class DiagnosticoDTO {
     private String gravedad;
     private LocalDate fechaEmision;
     private String descripcion;
-    private Usuario idUsuario;
+    private Usuario usuario;
 
     public int getIdDiagnostico() {
         return idDiagnostico;
@@ -52,11 +52,11 @@ public class DiagnosticoDTO {
         this.descripcion = descripcion;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

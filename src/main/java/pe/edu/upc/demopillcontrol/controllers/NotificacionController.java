@@ -8,18 +8,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pe.edu.upc.demopillcontrol.dtos.MedicamentosByGravedadDTO;
-import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
-import pe.edu.upc.demopillcontrol.dtos.NotificacionPorFechaDTO;
-import pe.edu.upc.demopillcontrol.dtos.NotificacionesPorUsuarioDTO;
+import pe.edu.upc.demopillcontrol.dtos.*;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.entities.Notificacion;
-import pe.edu.upc.demopillcontrol.servicesinplement.NotificacionServiceImplement;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.INotificacionService;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -108,10 +106,17 @@ public class NotificacionController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @GetMapping("/notificaciones/estado")
+    @GetMapping("/notificaciones/estado/resumen")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public List<Notificacion> obtenerPorEstado(@RequestParam boolean estado) {
-        return nS.getbyEstado(estado);
+    public Map<String, Integer> obtenerResumenEstados() {
+        int cumplidas = nS.getbyEstado(true).size();
+        int noCumplidas = nS.getbyEstado(false).size();
+
+        Map<String, Integer> resumen = new HashMap<>();
+        resumen.put("cumplidas", cumplidas);
+        resumen.put("noCumplidas", noCumplidas);
+
+        return resumen;
     }
 
     @GetMapping("/notificaciones-usuario/{nombre}")

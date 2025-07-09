@@ -16,7 +16,7 @@ public interface INotificacionService {
     public void delete(int idNotificacion);
     void deleteByDetalleRecetaId(Integer idDetalleReceta);
 
-    public List<Notificacion> getbyEstado(Boolean estado);
+    public List<Notificacion> getbyEstado(boolean estado);
     public List<NotificacionesPorUsuarioDTO> getNotificacionByNombre(String nombre);
     public List<NotificacionPorFechaDTO> getNotificacionByFecha(Date fechaInicioReceta);
 }

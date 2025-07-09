@@ -1,7 +1,6 @@
 package pe.edu.upc.demopillcontrol.servicesinplement;
 
 import jakarta.transaction.Transactional;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionDTO;
@@ -9,7 +8,6 @@ import pe.edu.upc.demopillcontrol.dtos.NotificacionPorFechaDTO;
 import pe.edu.upc.demopillcontrol.dtos.NotificacionesPorUsuarioDTO;
 import pe.edu.upc.demopillcontrol.entities.DetalleReceta;
 import pe.edu.upc.demopillcontrol.entities.Notificacion;
-import pe.edu.upc.demopillcontrol.entities.RolUsuario;
 import pe.edu.upc.demopillcontrol.repositories.INotificacionRepository;
 import pe.edu.upc.demopillcontrol.servicesinterfaces.INotificacionService;
 
@@ -56,6 +54,11 @@ public class NotificacionServiceImplement implements INotificacionService {
     }
 
     @Override
+    public List<Notificacion> getbyEstado(boolean estado) {
+        return nR.findByEstadoNotificacion(estado);
+    }
+
+    @Override
     public List<NotificacionDTO> list() {
         List<Notificacion> lista = nR.findAll();
         List<NotificacionDTO> listaDTO = new ArrayList<>();
@@ -82,11 +85,6 @@ public class NotificacionServiceImplement implements INotificacionService {
             listaDTO.add(dto);
         }
         return listaDTO;
-    }
-
-    @Override
-    public List<Notificacion> getbyEstado(Boolean estado) {
-        return nR.getByEstado(estado);
     }
 
     @Override
