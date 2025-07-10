@@ -33,8 +33,7 @@ public interface IDetalleRecetaRepository extends JpaRepository<DetalleReceta,In
     // Medicamentos por diagnóstico grave
     @Query(value = "SELECT m.nombre AS nombreMedicamento,\n" +
             " m.tipo_medicamento AS tipoMedicamento,\n" +
-            " m.dosis AS dosis,\n" +
-            " d.descripcion AS nombreDiagnostico\n" +
+            " d.nombre AS nombreDiagnostico\n" +
             " FROM detalle_receta dr\n" +
             " JOIN receta r ON dr.id_receta = r.id_receta\n" +
             " JOIN diagnostico d ON r.id_diagnostico = d.id_diagnostico\n" +
