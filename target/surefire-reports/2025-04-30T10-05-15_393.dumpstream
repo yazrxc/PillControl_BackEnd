@@ -1,5 +1,0 @@
-# Created at 2025-04-30T10:05:16.017
-Boot Manifest-JAR contains absolute paths in classpath 'D:\A-uni\2025-01\arqui web\PillControl\PillControl_BackEnd\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-
